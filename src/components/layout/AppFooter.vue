@@ -32,9 +32,11 @@
         <h4 class="text-lg font-semibold mb-6 text-white">Quick Links</h4>
         <div class="space-y-3 text-sm">
           <router-link to="/" class="block text-gray-400 hover:text-emerald-400 transition">Home</router-link>
-          <router-link to="/products" class="block text-gray-400 hover:text-emerald-400 transition">Market</router-link>
-          <router-link to="/about" class="block text-gray-400 hover:text-emerald-400 transition">About</router-link>
-          <router-link to="/contact" class="block text-gray-400 hover:text-emerald-400 transition">Contact</router-link>
+          <router-link to="/products" class="block text-gray-400 hover:text-emerald-400 transition">Marketplace</router-link>
+          <router-link to="/farmers" class="block text-gray-400 hover:text-emerald-400 transition">Farmers</router-link>
+          <router-link to="/crops" class="block text-gray-400 hover:text-emerald-400 transition">Crops</router-link>
+          <router-link to="/orders" class="block text-gray-400 hover:text-emerald-400 transition">Orders</router-link>
+          <router-link to="/analytics" class="block text-gray-400 hover:text-emerald-400 transition">Analytics</router-link>
         </div>
       </div>
 
@@ -75,6 +77,32 @@
 
     </div>
 
+    <!-- Bottom Links -->
+    <div class="mt-12 border-t border-white/10 pt-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <!-- Legal Links -->
+        <div>
+          <h4 class="text-sm font-semibold mb-4 text-white">Legal</h4>
+          <div class="flex flex-wrap gap-4 text-sm">
+            <router-link to="/login" class="text-gray-400 hover:text-emerald-400 transition">Login</router-link>
+            <router-link to="/register" class="text-gray-400 hover:text-emerald-400 transition">Register</router-link>
+            <router-link to="/profile" class="text-gray-400 hover:text-emerald-400 transition">Profile</router-link>
+            <router-link to="/settings" class="text-gray-400 hover:text-emerald-400 transition">Settings</router-link>
+          </div>
+        </div>
+
+        <!-- Platform Links -->
+        <div>
+          <h4 class="text-sm font-semibold mb-4 text-white">Platform</h4>
+          <div class="flex flex-wrap gap-4 text-sm">
+            <router-link to="/dashboard" class="text-gray-400 hover:text-emerald-400 transition">Dashboard</router-link>
+            <router-link to="/products/new" class="text-gray-400 hover:text-emerald-400 transition">Add Product</router-link>
+            <router-link to="/farmers" class="text-gray-400 hover:text-emerald-400 transition">Farmer Directory</router-link>
+            <router-link to="/orders" class="text-gray-400 hover:text-emerald-400 transition">Order History</router-link>
+          </div>
+        </div>
+      </div>
+
     <!-- Bottom -->
     <div class="mt-14 border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
       <p>© {{ currentYear }} SFMP Tanzania. All rights reserved.</p>
@@ -85,6 +113,8 @@
         ↑ Back to top
       </button>
     </div>
+
+  </div>
 
   </div>
 </footer>
