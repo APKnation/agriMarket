@@ -8,8 +8,24 @@
     <!-- Content Container -->
     <div class="relative z-10">
       <!-- Dynamic Carousel Hero Section -->
-      <section class="relative">
-        <Carousel />
+      <section class="relative h-[600px] bg-cover bg-center overflow-hidden" 
+               style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/images/heroes/cropmanage.jpg');
+                      background-size: cover;
+                      background-position: center;
+                      background-attachment: fixed;">
+        <!-- Animated overlay for better background visibility -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-transparent">
+          <div class="relative z-10 h-full flex items-center justify-center">
+            <Carousel />
+          </div>
+        </div>
+        
+        <!-- Animated gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/20 via-transparent to-transparent pointer-events-none">
+          <div class="absolute inset-0 flex items-center justify-center opacity-0">
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+          </div>
+        </div>
       </section>
 
     <!-- Features Section -->
@@ -27,8 +43,8 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Register Card -->
           <BlogCard
-            image-src="https://images.unsplash.com/photo-1592924357228-91a4daadc1cf?w=400&h=200&fit=crop"
-            image-alt="Register illustration"
+            image-src="/images/heroes/market.jpg"
+            image-alt="Tanzanian farmer using mobile phone for registration"
             :title="languageStore.t('register')"
             :description="languageStore.t('createAccount')"
             :read-more-text="languageStore.t('learnMore')"
@@ -37,8 +53,8 @@
           
           <!-- Manage Crops Card -->
           <BlogCard
-            image-src="https://images.unsplash.com/photo-1592924357228-91a4daadc1cf?w=400&h=200&fit=crop"
-            image-alt="Crops management illustration"
+            image-src="/images/heroes/cropmanage.jpg"
+            image-alt="Farmer managing crops with digital tools"
             :title="languageStore.t('manageCrops')"
             :description="languageStore.t('trackPlanting')"
             :read-more-text="languageStore.t('learnMore')"
@@ -47,10 +63,10 @@
           
           <!-- Connect & Trade Card -->
           <BlogCard
-            image-src="https://images.unsplash.com/photo-1592924357228-91a4daadc1cf?w=400&h=200&fit=crop"
-            image-alt="Marketplace illustration"
+            image-src="/images/heroes/market1.jpg"
+            image-alt="Farmers market with fresh produce trading"
             :title="languageStore.t('connectTrade')"
-            :description="languageStore.t('listProducts')"
+            :description="languageStore.t('marketplaceAccess')"
             :read-more-text="languageStore.t('learnMore')"
             read-more-link="/products"
           />

@@ -12,27 +12,43 @@
           :key="index"
           class="w-full flex-shrink-0"
         >
-          <div class="h-full bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center text-white">
+          <div class="h-full relative overflow-hidden">
+          <!-- Moving Background Image -->
+          <div 
+            class="absolute inset-0 bg-cover bg-center"
+            :style="{
+              backgroundImage: `url('${slide.backgroundImage}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              animation: 'slideBackground 20s linear infinite'
+            }"
+          ></div>
+          
+          <!-- Overlay for text readability -->
+          <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+          
+          <!-- Content -->
+          <div class="relative z-10 h-full flex items-center justify-center text-white">
             <div class="text-center px-6 max-w-4xl mx-auto">
               <!-- Icon -->
-              <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <component :is="slide.icon" class="w-10 h-10" />
               </div>
               
               <!-- Title -->
-              <h2 class="text-3xl md:text-5xl font-bold mb-4">
+              <h2 class="text-3xl md:text-5xl font-bold mb-4 animate-fade-in-up">
                 {{ slide.title }}
               </h2>
               
               <!-- Description -->
-              <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
                 {{ slide.description }}
               </p>
               
               <!-- CTA Button -->
               <router-link
                 :to="slide.ctaLink"
-                class="inline-flex items-center bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
+                class="inline-flex items-center bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-white/90 transition-all transform hover:scale-105 animate-fade-in-up animation-delay-400"
               >
                 {{ slide.ctaText }}
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,6 +57,7 @@
               </router-link>
             </div>
           </div>
+        </div>
         </div>
       </div>
       
@@ -102,35 +119,32 @@ const slides = ref([
     description: languageStore.t('carouselDesc1'),
     ctaText: languageStore.t('getStarted'),
     ctaLink: '/register',
-    icon: Users
+    icon: Users,
+    backgroundImage: '/images/heroes/market.jpg'
   },
   {
     title: languageStore.t('carouselTitle2'),
     description: languageStore.t('carouselDesc2'),
     ctaText: languageStore.t('learnMore'),
     ctaLink: '/crops',
-    icon: Sprout
+    icon: Sprout,
+    backgroundImage: '/images/heroes/cropmanage.jpg'
   },
   {
     title: languageStore.t('carouselTitle3'),
     description: languageStore.t('carouselDesc3'),
     ctaText: languageStore.t('exploreMarket'),
     ctaLink: '/products',
-    icon: ShoppingCart
+    icon: ShoppingCart,
+    backgroundImage: '/images/heroes/market1.jpg'
   },
   {
     title: languageStore.t('carouselTitle4'),
     description: languageStore.t('carouselDesc4'),
-    ctaText: languageStore.t('viewAnalytics'),
-    ctaLink: '/analytics',
-    icon: TrendingUp
-  },
-  {
-    title: languageStore.t('carouselTitle5'),
-    description: languageStore.t('carouselDesc5'),
-    ctaText: languageStore.t('joinCommunity'),
-    ctaLink: '/register',
-    icon: Globe
+    ctaText: languageStore.t('viewDashboard'),
+    ctaLink: '/dashboard',
+    icon: TrendingUp,
+    backgroundImage: '/images/heroes/market.jpg'
   }
 ])
 
@@ -175,3 +189,55 @@ onUnmounted(() => {
   stopAutoplay()
 })
 </script>
+
+<style scoped>
+/* Background slide animation */
+@keyframes slideBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation utilities */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* Button hover effects */
+.transform\:hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Background image animation */
+.bg-cover.bg-center {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>

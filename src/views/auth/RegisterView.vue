@@ -119,27 +119,6 @@
                 placeholder="Enter farm size in hectares"
               />
             </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
-                Primary Crops
-              </label>
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                <label
-                  v-for="crop in commonCrops"
-                  :key="crop"
-                  class="flex items-center space-x-2"
-                >
-                  <input
-                    v-model="form.crops"
-                    :value="crop"
-                    type="checkbox"
-                    class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-                  />
-                  <span class="text-sm">{{ crop }}</span>
-                </label>
-              </div>
-            </div>
           </div>
 
           <!-- Password Fields -->
@@ -258,7 +237,6 @@ const form = ref({
   phone: '',
   location: '',
   farmSize: '',
-  crops: [],
   password: '',
   confirmPassword: '',
   agreeToTerms: false
@@ -280,11 +258,6 @@ const tanzanianRegions = [
   'Arusha', 'Dar es Salaam', 'Dodoma', 'Geita', 'Iringa', 'Kagera', 'Katavi', 'Kigoma',
   'Kilimanjaro', 'Lindi', 'Manyara', 'Mara', 'Mbeya', 'Morogoro', 'Mtwara', 'Mwanza',
   'Njombe', 'Pwani', 'Rukwa', 'Ruvuma', 'Shinyanga', 'Simiyu', 'Singida', 'Tabora', 'Tanga'
-]
-
-const commonCrops = [
-  'Maize', 'Beans', 'Rice', 'Wheat', 'Sorghum', 'Millet', 'Cassava', 'Sweet Potatoes',
-  'Tomatoes', 'Onions', 'Cabbage', 'Carrots', 'Bananas', 'Mangoes', 'Citrus', 'Coffee', 'Tea'
 ]
 
 const handleRegister = async () => {
@@ -310,7 +283,6 @@ const handleRegister = async () => {
     // Add farmer-specific data
     if (form.value.role === 'farmer') {
       userData.farmSize = form.value.farmSize
-      userData.crops = form.value.crops
     }
 
     const result = await authStore.register(userData)
