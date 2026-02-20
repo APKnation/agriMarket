@@ -22,16 +22,17 @@
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              {{ languageStore.t('emailAddress') }}
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+              {{ languageStore.t('phoneNumber') }}
             </label>
             <input
-              id="email"
-              v-model="form.email"
-              type="email"
+              id="phone"
+              v-model="form.phone"
+              type="tel"
               required
               class="input-field"
-              placeholder="Enter your email"
+              :placeholder="languageStore.t('enterPhone')"
+              pattern="[\+]?[0-9\s]{9,15}"
             />
           </div>
 
@@ -97,16 +98,16 @@
           <p class="text-sm text-gray-600 mb-3">Demo Accounts:</p>
           <div class="space-y-2 text-xs">
             <div class="bg-gray-50 p-2 rounded">
-              <strong>Farmer:</strong> farmer@sfmp.com / password
+              <strong>Farmer:</strong> +255712345678 / password
             </div>
             <div class="bg-gray-50 p-2 rounded">
-              <strong>Buyer:</strong> buyer@sfmp.com / password
+              <strong>Buyer:</strong> +255713456789 / password
             </div>
             <div class="bg-gray-50 p-2 rounded">
-              <strong>Cooperative:</strong> cooperative@sfmp.com / password
+              <strong>Cooperative:</strong> +255714567890 / password
             </div>
             <div class="bg-gray-50 p-2 rounded">
-              <strong>Admin:</strong> admin@sfmp.com / password
+              <strong>Admin:</strong> +255715678901 / password
             </div>
           </div>
         </div>
@@ -137,7 +138,7 @@ const authStore = useAuthStore()
 const languageStore = useLanguageStore()
 
 const form = ref({
-  email: '',
+  phone: '',
   password: '',
   remember: false
 })

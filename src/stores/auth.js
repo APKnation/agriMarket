@@ -19,15 +19,15 @@ export const useAuthStore = defineStore('auth', () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
       
-      // Mock user data based on email
+      // Mock user data based on phone number
       const mockUsers = {
-        'farmer@sfmp.com': { id: 1, name: 'John Mwangi', email: 'farmer@sfmp.com', role: 'farmer', phone: '+255 712 345 678', location: 'Arusha, Tanzania' },
-        'buyer@sfmp.com': { id: 2, name: 'Sarah Market', email: 'buyer@sfmp.com', role: 'buyer', phone: '+255 713 456 789', location: 'Dar es Salaam, Tanzania' },
-        'cooperative@sfmp.com': { id: 3, name: 'Cooperative Manager', email: 'cooperative@sfmp.com', role: 'cooperative', phone: '+255 714 567 890', location: 'Morogoro, Tanzania' },
-        'admin@sfmp.com': { id: 4, name: 'System Admin', email: 'admin@sfmp.com', role: 'admin', phone: '+255 715 678 901', location: 'Dodoma, Tanzania' }
+        '+255712345678': { id: 1, name: 'John Mwangi', phone: '+255712345678', role: 'farmer', location: 'Arusha, Tanzania' },
+        '+255713456789': { id: 2, name: 'Sarah Market', phone: '+255713456789', role: 'buyer', location: 'Dar es Salaam, Tanzania' },
+        '+255714567890': { id: 3, name: 'Cooperative Manager', phone: '+255714567890', role: 'cooperative', location: 'Morogoro, Tanzania' },
+        '+255715678901': { id: 4, name: 'System Admin', phone: '+255715678901', role: 'admin', location: 'Dodoma, Tanzania' }
       }
       
-      const userData = mockUsers[credentials.email]
+      const userData = mockUsers[credentials.phone]
       if (userData && credentials.password === 'password') {
         user.value = userData
         token.value = 'mock-jwt-token'

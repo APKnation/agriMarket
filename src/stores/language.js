@@ -95,7 +95,7 @@ export const useLanguageStore = defineStore('language', () => {
       // Authentication
       welcomeToSFMP: 'Welcome to SFMP Tanzania',
       signInToAccount: 'Sign in to your SFMP Tanzania account',
-      emailAddress: 'Email Address',
+      phoneNumber: 'Phone Number',
       password: 'Password',
       rememberMe: 'Remember me',
       forgotPassword: 'Forgot password?',
@@ -109,6 +109,7 @@ export const useLanguageStore = defineStore('language', () => {
       firstName: 'First Name',
       lastName: 'Last Name',
       phoneNumber: 'Phone Number',
+      enterPhone: 'Enter your phone number',
       location: 'Location',
       farmSize: 'Farm Size',
       primaryCrops: 'Primary Crops',
@@ -245,7 +246,7 @@ export const useLanguageStore = defineStore('language', () => {
       // Authentication
       welcomeToSFMP: 'Karibu SFMP Tanzania',
       signInToAccount: 'Ingia kwenye akaunti yako ya SFMP Tanzania',
-      emailAddress: 'Anwani ya Barua pepe',
+      phoneNumber: 'Namba ya Simu',
       password: 'Nenosiri',
       rememberMe: 'Nikumbuke',
       forgotPassword: 'Umesahau nenosiri?',
@@ -259,6 +260,7 @@ export const useLanguageStore = defineStore('language', () => {
       firstName: 'Jina la Kwanza',
       lastName: 'Jina la Mwisho',
       phoneNumber: 'Namba ya Simu',
+      enterPhone: 'Weka namba yako ya simu',
       location: 'Mahali',
       farmSize: 'Ukubwa wa Shamba',
       primaryCrops: 'Mazao Makuu',

@@ -72,22 +72,8 @@
           </div>
 
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
-            </label>
-            <input
-              id="email"
-              v-model="form.email"
-              type="email"
-              required
-              class="input-field"
-              placeholder="Enter your email address"
-            />
-          </div>
-
-          <div>
             <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number
+              {{ languageStore.t('phoneNumber') }}
             </label>
             <input
               id="phone"
@@ -95,7 +81,8 @@
               type="tel"
               required
               class="input-field"
-              placeholder="+255 XXX XXX XXX"
+              :placeholder="languageStore.t('enterPhone')"
+              pattern="[\+]?[0-9\s]{9,15}"
             />
           </div>
 
@@ -268,7 +255,6 @@ const form = ref({
   role: 'farmer',
   firstName: '',
   lastName: '',
-  email: '',
   phone: '',
   location: '',
   farmSize: '',
@@ -315,7 +301,6 @@ const handleRegister = async () => {
   try {
     const userData = {
       name: `${form.value.firstName} ${form.value.lastName}`,
-      email: form.value.email,
       phone: form.value.phone,
       location: form.value.location,
       role: form.value.role,
