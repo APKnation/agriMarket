@@ -51,7 +51,139 @@
 
       </div>
 
-      <!-- RIGHT SIDE (Clustered Cards Layout with 3D Animations) -->
+      <!-- RIGHT SIDE (Hybrid Responsive Layout) -->
+      
+      <!-- Mobile: Single Card Carousel -->
+      <div class="lg:hidden md:hidden relative h-[400px] overflow-hidden">
+        <div class="relative h-full">
+          <!-- Carousel Container -->
+          <div class="flex transition-transform duration-500 ease-in-out h-full" 
+               :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+            
+            <!-- Mobile Card 1 - Farmers Market -->
+            <div class="min-w-full h-full flex items-center justify-center px-4">
+              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <img src="/images/heroes/market.jpg" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 class="text-lg font-bold mb-1">Farmers Market</h3>
+                  <p class="text-sm opacity-80">Connect with local farmers</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Card 2 - Crop Management -->
+            <div class="min-w-full h-full flex items-center justify-center px-4">
+              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <img src="/images/heroes/cropmanage.jpg" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 class="text-lg font-bold mb-1">Crop Management</h3>
+                  <p class="text-sm opacity-80">Smart farming solutions</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Card 3 - Marketplace -->
+            <div class="min-w-full h-full flex items-center justify-center px-4">
+              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <img src="/images/heroes/market1.jpg" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 class="text-lg font-bold mb-1">Marketplace</h3>
+                  <p class="text-sm opacity-80">Buy & sell produce</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Card 4 - Register -->
+            <div class="min-w-full h-full flex items-center justify-center px-4">
+              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <img src="/images/heroes/register.png" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 class="text-lg font-bold mb-1">Join SFMP</h3>
+                  <p class="text-sm opacity-80">Register today</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Card 5 - Tanzania Focus -->
+            <div class="min-w-full h-full flex items-center justify-center px-4">
+              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <img src="/images/heroes/cropmanage.jpg" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 class="text-lg font-bold mb-1">Tanzania Focus</h3>
+                  <p class="text-sm opacity-80">Local solutions</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <!-- Previous Button -->
+        <button @click="previousSlide" 
+                class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Next Button -->
+        <button @click="nextSlide" 
+                class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+
+        <!-- Carousel Indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+          <button v-for="(_, index) in 5" 
+                  :key="index"
+                  @click="goToSlide(index)"
+                  class="w-2 h-2 rounded-full transition-colors"
+                  :class="currentSlide === index ? 'bg-emerald-500' : 'bg-white/30'">
+          </button>
+        </div>
+      </div>
+
+      <!-- Tablet: 2x2 Grid Layout -->
+      <div class="lg:hidden md:block hidden relative h-[600px] p-4">
+        <div class="grid grid-cols-2 gap-4 h-full">
+          <!-- Top Left -->
+          <div class="rounded-xl overflow-hidden shadow-xl border border-white/10 transform -rotate-2 hover:rotate-0 transition-all duration-300">
+            <img src="/images/heroes/cropmanage.jpg" class="w-full h-40 object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-2 left-2 right-2 text-white">
+              <h4 class="text-sm font-bold">Crop Management</h4>
+            </div>
+          </div>
+          
+          <!-- Top Right -->
+          <div class="rounded-xl overflow-hidden shadow-xl border border-white/10 transform rotate-2 hover:rotate-0 transition-all duration-300">
+            <img src="/images/heroes/market1.jpg" class="w-full h-40 object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-2 left-2 right-2 text-white">
+              <h4 class="text-sm font-bold">Marketplace</h4>
+            </div>
+          </div>
+          
+          <!-- Bottom Left (Main Card) -->
+          <div class="col-span-2 rounded-xl overflow-hidden shadow-2xl border border-white/10 hover:scale-105 transition-all duration-300">
+            <img src="/images/heroes/market.jpg" class="w-full h-48 object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <h3 class="text-xl font-bold mb-2">Farmers Market</h3>
+              <p class="text-sm opacity-80">Connect with local farmers across Tanzania</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop: Current Absolute Positioning Layout -->
       <div class="relative hidden lg:block h-[700px] preserve-3d">
 
         <!-- TOP LEFT CARD (3D Flip) -->
@@ -312,12 +444,51 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { UserPlus, Sprout, ShoppingCart } from 'lucide-vue-next'
 import { useLanguageStore } from '@/stores/language'
 import BlogCard from '@/components/common/BlogCard.vue'
 import Carousel from '@/components/common/Carousel.vue'
 
 const languageStore = useLanguageStore()
+
+// Carousel functionality for mobile
+const currentSlide = ref(0)
+const totalSlides = 5
+let autoPlayInterval = null
+
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % totalSlides
+}
+
+const previousSlide = () => {
+  currentSlide.value = currentSlide.value === 0 ? totalSlides - 1 : currentSlide.value - 1
+}
+
+const goToSlide = (index) => {
+  currentSlide.value = index
+}
+
+const startAutoPlay = () => {
+  autoPlayInterval = setInterval(() => {
+    nextSlide()
+  }, 4000) // Auto-play every 4 seconds
+}
+
+const stopAutoPlay = () => {
+  if (autoPlayInterval) {
+    clearInterval(autoPlayInterval)
+    autoPlayInterval = null
+  }
+}
+
+onMounted(() => {
+  startAutoPlay()
+})
+
+onUnmounted(() => {
+  stopAutoPlay()
+})
 </script>
 
 <style scoped>
