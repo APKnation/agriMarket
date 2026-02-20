@@ -139,6 +139,111 @@
           </router-link>
         </div>
       </div>
+
+      <!-- Add Farmer Modal -->
+      <div
+        v-if="showAddModal"
+        class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
+      >
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-lg bg-white">
+          <div class="mt-3">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">
+              {{ languageStore.t('addFarmer') }}
+            </h3>
+            <form @submit.prevent="saveFarmer" class="space-y-4">
+              <div>
+                <label for="farmerName" class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ languageStore.t('name') }}
+                </label>
+                <input
+                  id="farmerName"
+                  v-model="farmerForm.name"
+                  type="text"
+                  required
+                  class="input-field"
+                  :placeholder="languageStore.t('enterName')"
+                />
+              </div>
+              <div>
+                <label for="farmerEmail" class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ languageStore.t('emailAddress') }}
+                </label>
+                <input
+                  id="farmerEmail"
+                  v-model="farmerForm.email"
+                  type="email"
+                  required
+                  class="input-field"
+                  :placeholder="languageStore.t('enterEmail')"
+                />
+              </div>
+              <div>
+                <label for="farmerPhone" class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ languageStore.t('phoneNumber') }}
+                </label>
+                <input
+                  id="farmerPhone"
+                  v-model="farmerForm.phone"
+                  type="tel"
+                  required
+                  class="input-field"
+                  :placeholder="languageStore.t('enterPhone')"
+                />
+              </div>
+              <div>
+                <label for="farmerLocation" class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ languageStore.t('location') }}
+                </label>
+                <input
+                  id="farmerLocation"
+                  v-model="farmerForm.location"
+                  type="text"
+                  required
+                  class="input-field"
+                  :placeholder="languageStore.t('enterLocation')"
+                />
+              </div>
+              <div>
+                <label for="farmSize" class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ languageStore.t('farmSize') }}
+                </label>
+                <select
+                  id="farmSize"
+                  v-model="farmerForm.farmSize"
+                  required
+                  class="input-field"
+                >
+                  <option value="">{{ languageStore.t('selectFarmSize') }}</option>
+                  <option value="1-5">{{ languageStore.t('small') }} (1-5 {{ languageStore.t('acres') }})</option>
+                  <option value="6-20">{{ languageStore.t('medium') }} (6-20 {{ languageStore.t('acres') }})</option>
+                  <option value="21+">{{ languageStore.t('large') }} (21+ {{ languageStore.t('acres') }})</option>
+                </select>
+              </div>
+              <div class="flex justify-end space-x-3 pt-4">
+                <button
+                  type="button"
+                  @click="showAddModal = false"
+                  class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
+                >
+                  {{ languageStore.t('cancel') }}
+                </button>
+                <button
+                  type="submit"
+                  class="btn-primary"
+                >
+                  {{ languageStore.t('addFarmer') }}
+                </button>
+              </div>
+            </form>
+          </div>
+          <button
+            @click="showAddModal = false"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+          >
+            <X class="w-6 h-6" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -180,6 +285,14 @@ const cropsStore = useCropsStore()
 const productsStore = useProductsStore()
 
 const chartCanvas = ref(null)
+const showAddModal = ref(false)
+const farmerForm = ref({
+  name: '',
+  email: '',
+  phone: '',
+  location: '',
+  farmSize: ''
+})
 
 const stats = computed(() => ({
   totalFarmers: farmersStore.getFarmers().length,
@@ -263,6 +376,21 @@ const quickActions = computed(() => {
 
   return actions
 })
+
+const saveFarmer = () => {
+  console.log('saveFarmer called', farmerForm.value)
+  console.log('farmersStore:', farmersStore)
+  
+  farmersStore.addFarmer(farmerForm.value)
+  showAddModal.value = false
+  
+  // Show success notification
+  window.addNotification({
+    type: 'success',
+    title: 'Farmer Added',
+    message: 'Farmer has been successfully added to the system.'
+  })
+}
 
 onMounted(() => {
   // Initialize chart

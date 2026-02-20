@@ -340,12 +340,25 @@ const editFarmer = (farmer) => {
 }
 
 const saveFarmer = () => {
+  console.log('saveFarmer called', farmerForm.value)
+  console.log('farmersStore:', farmersStore)
+  
   if (editingFarmer.value) {
+    console.log('Updating farmer')
     farmersStore.updateFarmer(editingFarmer.value.id, farmerForm.value)
   } else {
+    console.log('Adding new farmer')
     farmersStore.addFarmer(farmerForm.value)
   }
+  
   closeModal()
+  
+  // Show success notification
+  window.addNotification({
+    type: 'success',
+    title: 'Farmer Saved',
+    message: `Farmer has been successfully ${editingFarmer.value ? 'updated' : 'added'}.`
+  })
 }
 
 const verifyFarmer = (id) => {

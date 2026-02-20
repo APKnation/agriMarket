@@ -475,22 +475,30 @@ const editCrop = (crop) => {
 }
 
 const saveCrop = () => {
+  console.log('saveCrop called', cropForm.value)
+  console.log('cropsStore:', cropsStore)
+  console.log('authStore.user:', authStore.user)
+  
   const cropData = {
     ...cropForm.value,
     farmerId: authStore.user.id
   }
 
   if (editingCrop.value) {
+    console.log('Updating crop')
     cropsStore.updateCrop(editingCrop.value.id, cropData)
   } else {
+    console.log('Adding new crop')
     cropsStore.addCrop(cropData)
   }
-
+  
   closeCropModal()
+  
+  // Show success notification
   window.addNotification({
     type: 'success',
     title: 'Crop Saved',
-    message: `Crop ${editingCrop.value ? 'updated' : 'added'} successfully.`
+    message: `Crop has been successfully ${editingCrop.value ? 'updated' : 'added'}.`
   })
 }
 
