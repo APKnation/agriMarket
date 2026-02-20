@@ -14,15 +14,17 @@
         >
           <div class="h-full relative overflow-hidden">
           <!-- Moving Background Image -->
-          <div 
-            class="absolute inset-0 bg-cover bg-center"
+          <img 
+            :src="slide.backgroundImage"
+            :alt="slide.title"
+            class="absolute inset-0 w-full h-full object-cover"
             :style="{
-              backgroundImage: `url('${slide.backgroundImage}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              animation: 'slideBackground 20s linear infinite'
+              animation: 'slideBackground 20s linear infinite',
+              objectFit: 'cover',
+              objectPosition: 'center'
             }"
-          ></div>
+            loading="lazy"
+          />
           
           <!-- Overlay for text readability -->
           <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
@@ -120,7 +122,7 @@ const slides = ref([
     ctaText: languageStore.t('getStarted'),
     ctaLink: '/register',
     icon: Users,
-    backgroundImage: '/images/heroes/market.jpg'
+    backgroundImage: '/images/heroes/register.png' // 92KB - already optimized
   },
   {
     title: languageStore.t('carouselTitle2'),
@@ -128,7 +130,7 @@ const slides = ref([
     ctaText: languageStore.t('learnMore'),
     ctaLink: '/crops',
     icon: Sprout,
-    backgroundImage: '/images/heroes/cropmanage.jpg'
+    backgroundImage: '/images/heroes/cropmanage.jpg' // 139KB - compressed!
   },
   {
     title: languageStore.t('carouselTitle3'),
@@ -136,7 +138,7 @@ const slides = ref([
     ctaText: languageStore.t('exploreMarket'),
     ctaLink: '/products',
     icon: ShoppingCart,
-    backgroundImage: '/images/heroes/market1.jpg'
+    backgroundImage: '/images/heroes/market1.jpg' // 188KB - compressed!
   },
   {
     title: languageStore.t('carouselTitle4'),
@@ -144,7 +146,7 @@ const slides = ref([
     ctaText: languageStore.t('viewDashboard'),
     ctaLink: '/dashboard',
     icon: TrendingUp,
-    backgroundImage: '/images/heroes/market.jpg'
+    backgroundImage: '/images/heroes/market.jpg' // 166KB - compressed!
   }
 ])
 

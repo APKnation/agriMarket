@@ -1,16 +1,16 @@
 <template>
-  <header class="bg-white shadow-md border-b border-earth-200 fixed top-0 left-0 right-0 z-50">
+  <header class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 backdrop-blur-md border-b border-slate-700/50 fixed top-0 left-0 right-0 z-50 shadow-2xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo and Brand -->
         <div class="flex items-center">
-          <router-link to="/dashboard" class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+          <router-link to="/dashboard" class="flex items-center space-x-3 group">
+            <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg transform transition-transform group-hover:scale-110 group-hover:rotate-6">
               <span class="text-white font-bold text-xl">🌾</span>
             </div>
             <div>
-              <h1 class="text-xl font-bold text-gray-900">SFMP</h1>
-              <p class="text-xs text-gray-500">Tanzania</p>
+              <h1 class="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">SFMP</h1>
+              <p class="text-xs text-slate-400 font-medium">Tanzania</p>
             </div>
           </router-link>
         </div>
@@ -21,8 +21,8 @@
             v-for="item in navigationItems"
             :key="item.name"
             :to="item.to"
-            class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-            :class="$route.name === item.name ? 'bg-primary-100 text-primary-700' : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'"
+            class="flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 backdrop-blur-sm border border-slate-600/30 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20"
+            :class="$route.name === item.name ? 'bg-emerald-500/20 text-white border-emerald-400/50' : 'text-slate-300 hover:text-white'"
           >
             <component :is="item.icon" class="w-4 h-4" />
             <span>{{ item.label }}</span>
@@ -32,85 +32,85 @@
         <!-- User Menu -->
         <div class="flex items-center space-x-4">
           <!-- Notifications -->
-          <button class="relative p-2 text-gray-600 hover:text-primary-600 transition-colors">
+          <button class="relative p-2 text-slate-400 hover:text-emerald-400 transition-all duration-300 rounded-xl hover:bg-slate-700/50">
             <Bell class="w-5 h-5" />
-            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            <span class="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
           </button>
 
           <!-- Language Switcher -->
           <button
             @click="toggleLanguage"
-            class="flex items-center space-x-1 px-2 py-1 text-sm text-gray-600 hover:text-primary-600 transition-colors"
+            class="flex items-center space-x-2 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-300 backdrop-blur-sm border border-slate-600/30 hover:border-emerald-500/50 hover:bg-emerald-500/10"
           >
             <Globe class="w-4 h-4" />
-            <span>{{ languageStore.currentLanguage === 'en' ? 'EN' : 'SW' }}</span>
+            <span class="text-slate-300">{{ languageStore.currentLanguage === 'en' ? 'EN' : 'SW' }}</span>
           </button>
 
           <!-- User Dropdown -->
           <div class="relative">
             <button
               @click="toggleUserMenu"
-              class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              class="flex items-center space-x-2 p-2 rounded-xl hover:bg-slate-700/50 transition-all duration-300 border border-slate-600/30"
             >
-              <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+              <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
                 <span class="text-white text-sm font-medium">{{ userInitials }}</span>
               </div>
-              <ChevronDown class="w-4 h-4 text-gray-600" />
+              <ChevronDown class="w-4 h-4 text-slate-400" />
             </button>
 
             <!-- Dropdown Menu -->
             <div
               v-if="showUserMenu"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1"
+              class="absolute right-0 mt-2 w-56 bg-slate-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-600/50 py-2"
             >
               <router-link
                 to="/profile"
-                class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white hover:bg-emerald-500/20 transition-all duration-300 rounded-xl"
               >
                 <User class="w-4 h-4" />
                 <span>Profile</span>
               </router-link>
               <router-link
                 to="/settings"
-                class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                class="flex items-center space-x-3 px-4 py-3 text-slate-300 hover:text-white hover:bg-emerald-500/20 transition-all duration-300 rounded-xl"
               >
                 <Settings class="w-4 h-4" />
                 <span>Settings</span>
               </router-link>
-              <hr class="my-1 border-gray-200" />
+              <hr class="my-2 border-slate-600/30" />
               <button
                 @click="handleLogout"
-                class="flex items-center space-x-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                class="flex items-center space-x-3 px-4 py-3 text-red-400 hover:text-white hover:bg-red-500/20 transition-all duration-300 rounded-xl w-full text-left"
               >
                 <LogOut class="w-4 h-4" />
                 <span>Logout</span>
               </button>
             </div>
           </div>
-
-          <!-- Mobile Menu Button -->
-          <button
-            @click="toggleMobileMenu"
-            class="md:hidden p-2 text-gray-600 hover:text-primary-600"
-          >
-            <Menu class="w-6 h-6" />
-          </button>
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          @click="toggleMobileMenu"
+          class="md:hidden p-2 text-slate-400 hover:text-emerald-400 transition-all duration-300 rounded-xl"
+        >
+          <Menu class="w-6 h-6" />
+        </button>
       </div>
     </div>
 
     <!-- Mobile Menu -->
     <div
       v-if="showMobileMenu"
-      class="md:hidden bg-white border-t border-gray-200"
+      class="md:hidden bg-slate-800/95 backdrop-blur-xl border-t border-slate-600/30"
     >
-      <div class="px-4 py-2 space-y-1">
+      <div class="px-4 py-3 space-y-2">
         <router-link
           v-for="item in navigationItems"
           :key="item.name"
           :to="item.to"
-          class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium w-full"
-          :class="$route.name === item.name ? 'bg-primary-100 text-primary-700' : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'"
+          class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium w-full transition-all duration-300 backdrop-blur-sm border border-slate-600/30 hover:border-emerald-500/50"
+          :class="$route.name === item.name ? 'bg-emerald-500/20 text-white border-emerald-400/50' : 'text-slate-300 hover:text-white'"
           @click="showMobileMenu = false"
         >
           <component :is="item.icon" class="w-4 h-4" />
