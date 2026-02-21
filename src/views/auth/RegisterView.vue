@@ -287,7 +287,9 @@ const handleRegister = async () => {
 
     const result = await authStore.register(userData)
     if (result.success) {
-      router.push('/dashboard')
+      // Use role-based redirect for new users
+      const redirectPath = authStore.getRoleBasedRedirect(form.value.role)
+      router.push(redirectPath)
     } else {
       error.value = result.error || 'Registration failed. Please try again.'
     }

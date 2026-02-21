@@ -23,17 +23,19 @@
 
           <div>
             <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-              {{ languageStore.t('phoneNumber') }}
+              {{ languageStore.t('phoneNumber') }} / Username
             </label>
             <input
               id="phone"
               v-model="form.phone"
-              type="tel"
+              type="text"
               required
               class="input-field"
-              :placeholder="languageStore.t('enterPhone')"
-              pattern="[\+]?[0-9\s]{9,15}"
+              placeholder="Enter phone number or username"
             />
+            <p class="text-xs text-gray-500 mt-1">
+              Use phone number or "admin" for admin access
+            </p>
           </div>
 
           <div>
@@ -107,7 +109,7 @@
               <strong>Cooperative:</strong> +255714567890 / password
             </div>
             <div class="bg-gray-50 p-2 rounded">
-              <strong>Admin:</strong> +255715678901 / password
+              <strong>Admin:</strong> admin / password
             </div>
           </div>
         </div>
@@ -154,7 +156,9 @@ const handleLogin = async () => {
   try {
     const result = await authStore.login(form.value)
     if (result.success) {
-      router.push('/dashboard')
+      // Use role-specific redirect path
+      const redirectPath = result.redirectPath || '/dashboard'
+      router.push(redirectPath)
     } else {
       error.value = result.error || languageStore.t('loginFailed')
     }
