@@ -8,180 +8,187 @@
     <!-- Content Container -->
     <div class="relative z-10">
       <!-- Dynamic Carousel Hero Section -->
-    <section class="relative min-h-[650px] bg-black overflow-hidden">
+    <section class="relative min-h-[650px]   overflow-hidden">
 
-  <!-- Background -->
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-cover bg-center"
-         style="background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('/images/heroes/cropmanage.jpg');
-                background-size: cover;
-                background-position: center;">
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-  </div>
+<!-- Background -->
+<div class="absolute inset-0">
+  <!-- Only show background on desktop/tablet -->
+  <div v-if="!isMobile" class="absolute inset-0 bg-cover bg-center"
+     style="background-image: url('/images/heroes/cropmanage.jpg');">
+</div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent md:from-black/85 md:via-black/60"></div>
+</div>
 
   <!-- Content -->
-  <div class="relative z-20 max-w-7xl mx-auto px-6 py-24">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+  <div class="relative z-20 max-w-7xl mx-auto px-0 py-0">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 items-center">
 
-      <!-- LEFT SIDE -->
-      <div class="text-center lg:text-left">
+      <!-- LEFT SIDE - Hero words with background image on mobile -->
+       <div class="text-center lg:text-left relative rounded-2xl overflow-hidden p-8 sm:p-12"
+     :class="{'mobile-bg': isMobile, 'bg-transparent': !isMobile}"
+     :style="isMobile ? 'background-image: url(\'/images/heroes/cropmanage.jpg\'); background-size: cover; background-position: center;' : ''">
+  
+  <!-- Mobile overlay for text readability -->
+  <div v-if="isMobile" class="absolute inset-0 bg-black/60"></div>
+  
+  <!-- Text content with relative positioning for mobile -->
+  <div :class="{'relative z-10': isMobile}">
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight mb-2 sm:mb-2">
+      {{ languageStore.t('sustainableFarm') }}
+    </h1>
 
-        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
-          {{ languageStore.t('sustainableFarm') }}
-        </h1>
+    <p class="text-lg sm:text-xl text-white/80 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0">
+      {{ languageStore.t('connectingFarmers') }}
+    </p>
 
-        <p class="text-xl text-white/80 mb-10 max-w-xl">
-          {{ languageStore.t('connectingFarmers') }}
-        </p>
+    <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center lg:justify-start mb-6 sm:mb-8">
+      <router-link
+        to="/register"
+        class="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition duration-300 hover:scale-105 shadow-lg text-center">
+        {{ languageStore.t('getStarted') }}
+      </router-link>
 
-        <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start mb-8">
-          <router-link
-            to="/register"
-            class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition duration-300 hover:scale-105 shadow-lg">
-            {{ languageStore.t('getStarted') }}
-          </router-link>
+      <router-link
+        to="/login"
+        class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition duration-300 hover:scale-105 text-center">
+        {{ languageStore.t('signIn') }}
+      </router-link>
+    </div>
+  </div>
+</div>
 
-          <router-link
-            to="/login"
-            class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg transition duration-300 hover:scale-105">
-            {{ languageStore.t('signIn') }}
-          </router-link>
-        </div>
-
-      </div>
-
-      <!-- RIGHT SIDE (Hybrid Responsive Layout) -->
-      
-      <!-- Mobile: Single Card Carousel -->
-      <div class="lg:hidden md:hidden relative h-[400px] overflow-hidden">
-        <div class="relative h-full">
-          <!-- Carousel Container -->
-          <div class="flex transition-transform duration-500 ease-in-out h-full" 
-               :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-            
-            <!-- Mobile Card 1 - Farmers Market -->
-            <div class="min-w-full h-full flex items-center justify-center px-4">
-              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
-                <img src="/images/heroes/market.jpg" class="w-full h-full object-cover"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 class="text-lg font-bold mb-1">Farmers Market</h3>
-                  <p class="text-sm opacity-80">Connect with local farmers</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 2 - Crop Management -->
-            <div class="min-w-full h-full flex items-center justify-center px-4">
-              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
-                <img src="/images/heroes/cropmanage.jpg" class="w-full h-full object-cover"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 class="text-lg font-bold mb-1">Crop Management</h3>
-                  <p class="text-sm opacity-80">Smart farming solutions</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 3 - Marketplace -->
-            <div class="min-w-full h-full flex items-center justify-center px-4">
-              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
-                <img src="/images/heroes/market1.jpg" class="w-full h-full object-cover"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 class="text-lg font-bold mb-1">Marketplace</h3>
-                  <p class="text-sm opacity-80">Buy & sell produce</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 4 - Register -->
-            <div class="min-w-full h-full flex items-center justify-center px-4">
-              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
-                <img src="/images/heroes/register.png" class="w-full h-full object-cover"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 class="text-lg font-bold mb-1">Join SFMP</h3>
-                  <p class="text-sm opacity-80">Register today</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mobile Card 5 - Tanzania Focus -->
-            <div class="min-w-full h-full flex items-center justify-center px-4">
-              <div class="w-full max-w-sm h-48 rounded-xl overflow-hidden shadow-2xl border border-white/10">
-                <img src="/images/heroes/cropmanage.jpg" class="w-full h-full object-cover"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                <div class="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 class="text-lg font-bold mb-1">Tanzania Focus</h3>
-                  <p class="text-sm opacity-80">Local solutions</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Carousel Controls -->
-        <!-- Previous Button -->
-        <button @click="previousSlide" 
-                class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-        </button>
-
-        <!-- Next Button -->
-        <button @click="nextSlide" 
-                class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-
-        <!-- Carousel Indicators -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-          <button v-for="(_, index) in 5" 
-                  :key="index"
-                  @click="goToSlide(index)"
-                  class="w-2 h-2 rounded-full transition-colors"
-                  :class="currentSlide === index ? 'bg-emerald-500' : 'bg-white/30'">
-          </button>
-        </div>
-      </div>
-
-      <!-- Tablet: 2x2 Grid Layout -->
-      <div class="lg:hidden md:block hidden relative h-[600px] p-4">
-        <div class="grid grid-cols-2 gap-4 h-full">
-          <!-- Top Left -->
-          <div class="rounded-xl overflow-hidden shadow-xl border border-white/10 transform -rotate-2 hover:rotate-0 transition-all duration-300">
-            <img src="/images/heroes/cropmanage.jpg" class="w-full h-40 object-cover"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 right-2 text-white">
-              <h4 class="text-sm font-bold">Crop Management</h4>
-            </div>
-          </div>
+    <!-- RIGHT SIDE - Improved mobile carousel -->
+    
+    <!-- Mobile: Enhanced Single Card Carousel -->
+    <div class="lg:hidden relative h-[450px] sm:h-[500px] overflow-visible">
+      <div class="relative h-full">
+        <!-- Carousel Container -->
+        <div class="flex transition-transform duration-500 ease-in-out h-full" 
+             :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
           
-          <!-- Top Right -->
-          <div class="rounded-xl overflow-hidden shadow-xl border border-white/10 transform rotate-2 hover:rotate-0 transition-all duration-300">
-            <img src="/images/heroes/market1.jpg" class="w-full h-40 object-cover"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 right-2 text-white">
-              <h4 class="text-sm font-bold">Marketplace</h4>
+          <!-- Mobile Card 1 - Farmers Market -->
+          <div class="min-w-full h-full flex items-center justify-center px-1 sm:px-2">
+            <div class="relative w-full max-w-xl sm:max-w-sm h-56 sm:h-64 rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <img src="/images/heroes/market.jpg" class="w-full h-full object-cover" alt="Farmers Market"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 drop-shadow-lg">Farmers Market</h3>
+                <p class="text-sm sm:text-base opacity-90 font-medium drop-shadow">Connect with local farmers</p>
+              </div>
             </div>
           </div>
-          
-          <!-- Bottom Left (Main Card) -->
-          <div class="col-span-2 rounded-xl overflow-hidden shadow-2xl border border-white/10 hover:scale-105 transition-all duration-300">
-            <img src="/images/heroes/market.jpg" class="w-full h-48 object-cover"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            <div class="absolute bottom-4 left-4 right-4 text-white">
-              <h3 class="text-xl font-bold mb-2">Farmers Market</h3>
-              <p class="text-sm opacity-80">Connect with local farmers across Tanzania</p>
+
+          <!-- Mobile Card 2 - Crop Management -->
+          <div class="min-w-full h-full flex items-center justify-center px-2 sm:px-4">
+            <div class="relative w-full max-w-xl sm:max-w-sm h-56 sm:h-64 rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <img src="/images/heroes/cropmanage.jpg" class="w-full h-full object-cover" alt="Crop Management"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 drop-shadow-lg">Crop Management</h3>
+                <p class="text-sm sm:text-base opacity-90 font-medium drop-shadow">Smart farming solutions</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Card 3 - Marketplace -->
+          <div class="min-w-full h-full flex items-center justify-center px-2 sm:px-4">
+            <div class="relative w-full max-w-xl sm:max-w-sm h-56 sm:h-64 rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <img src="/images/heroes/market1.jpg" class="w-full h-full object-cover" alt="Marketplace"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 drop-shadow-lg">Marketplace</h3>
+                <p class="text-sm sm:text-base opacity-90 font-medium drop-shadow">Buy & sell produce</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Card 4 - Register -->
+          <div class="min-w-full h-full flex items-center justify-center px-2 sm:px-4">
+            <div class="relative w-full max-w-xl sm:max-w-sm h-56 sm:h-64 rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <img src="/images/heroes/register.png" class="w-full h-full object-cover" alt="Join SFMP"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 drop-shadow-lg">Join SFMP</h3>
+                <p class="text-sm sm:text-base opacity-90 font-medium drop-shadow">Register today</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Card 5 - Tanzania Focus -->
+          <div class="min-w-full h-full flex items-center justify-center px-2 sm:px-4">
+            <div class="relative w-full max-w-xl sm:max-w-sm h-56 sm:h-64 rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
+              <img src="/images/heroes/cropmanage.jpg" class="w-full h-full object-cover" alt="Tanzania Focus"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 drop-shadow-lg">Tanzania Focus</h3>
+                <p class="text-sm sm:text-base opacity-90 font-medium drop-shadow">Local solutions</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Enhanced Carousel Controls - Larger touch targets -->
+      <button @click="previousSlide" 
+              class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-colors border border-white/20 z-10">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <button @click="nextSlide" 
+              class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-colors border border-white/20 z-10">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+
+      <!-- Larger Carousel Indicators -->
+      <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 sm:space-x-4">
+        <button v-for="(_, index) in 5" 
+                :key="index"
+                @click="goToSlide(index)"
+                class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 shadow-lg"
+                :class="currentSlide === index ? 'bg-emerald-500 w-6 sm:w-8' : 'bg-white/50 hover:bg-white/80'">
+        </button>
+      </div>
+    </div>
+
+    <!-- Tablet: Enhanced 2x2 Grid Layout -->
+    <div class="lg:hidden md:block hidden relative h-[550px] p-4">
+      <div class="grid grid-cols-2 gap-4 h-full">
+        <!-- Top Left -->
+        <div class="relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 transform -rotate-2 hover:rotate-0 transition-all duration-300">
+          <img src="/images/heroes/cropmanage.jpg" class="w-full h-44 object-cover" alt="Crop Management"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h4 class="text-base font-bold mb-1 drop-shadow-lg">Crop Management</h4>
+            <p class="text-xs opacity-90 font-medium">Smart farming solutions</p>
+          </div>
+        </div>
+        
+        <!-- Top Right -->
+        <div class="relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 transform rotate-2 hover:rotate-0 transition-all duration-300">
+          <img src="/images/heroes/market1.jpg" class="w-full h-44 object-cover" alt="Marketplace"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h4 class="text-base font-bold mb-1 drop-shadow-lg">Marketplace</h4>
+            <p class="text-xs opacity-90 font-medium">Buy & sell produce</p>
+          </div>
+        </div>
+        
+        <!-- Bottom Main Card -->
+        <div class="col-span-2 relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 hover:scale-105 transition-all duration-300">
+          <img src="/images/heroes/market.jpg" class="w-full h-52 object-cover" alt="Farmers Market"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <h3 class="text-2xl font-bold mb-2 drop-shadow-lg">Farmers Market</h3>
+            <p class="text-base opacity-90 font-medium drop-shadow">Connect with local farmers across Tanzania</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
       <!-- Desktop: Current Absolute Positioning Layout -->
       <div class="relative hidden lg:block h-[700px] preserve-3d">
@@ -452,6 +459,12 @@ import Carousel from '@/components/common/Carousel.vue'
 
 const languageStore = useLanguageStore()
 
+// Mobile detection
+const isMobile = ref(false)
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 768
+}
+
 // Carousel functionality for mobile
 const currentSlide = ref(0)
 const totalSlides = 5
@@ -483,10 +496,13 @@ const stopAutoPlay = () => {
 }
 
 onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
   startAutoPlay()
 })
 
 onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
   stopAutoPlay()
 })
 </script>
