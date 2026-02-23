@@ -388,9 +388,9 @@
       </section>
 
       <!-- Features Section -->
-      <section class="py-20 bg-white/95 backdrop-blur-sm">
+      <section class="py-8 bg-white/95 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
+          <div class="text-center mb-8">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
               Simple Steps to Get Started
             </h2>
@@ -431,9 +431,9 @@
       </section>
 
       <!-- User Roles Section -->
-      <section class="py-20 bg-earth-50/90 backdrop-blur-sm">
+      <section class="py-8 bg-earth-50/90 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
+          <div class="text-center mb-8">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
               Find Your Role in Ecosystem
             </h2>
@@ -500,359 +500,301 @@
 
       <!-- Statistics Section -->
       <section
-        class="py-16 md:py-20 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 relative overflow-hidden"
+        class="py-8 md:py-12 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 relative overflow-hidden"
       >
-        <div class="absolute inset-0 opacity-10">
-          <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(255,255,255,0.1)_0%,transparent_50%)]"
-          ></div>
-        </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight"
+      >
+        Transforming Lives Through Agriculture
+      </h2>
+      <p class="text-xl text-emerald-50 max-w-2xl mx-auto font-normal leading-relaxed">
+        Real stories of change from communities across Tanzania
+      </p>
+    </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2
-              class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight"
-            >
-              Transforming Lives Through Agriculture
-            </h2>
-            <p class="text-xl text-emerald-50 max-w-2xl mx-auto font-normal leading-relaxed">
-              Real stories of change from communities across Tanzania
-            </p>
-          </div>
-
-          <!-- Mobile-first carousel with single card display -->
-          <div class="relative h-full">
-            <!-- Mobile carousel (single card) -->
-            <div class="lg:hidden">
-              <div class="relative h-full overflow-hidden">
-                <div
-                  class="flex h-full transition-transform duration-500 ease-out"
-                  :style="{ transform: `translateX(-${mobileCardIndex * 100}%)` }"
-                >
-                  <!-- Market Access Card -->
-                  <div class="w-full h-full flex-shrink-0">
-                    <div class="relative h-full group">
-                      <!-- Card Background -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/90 via-emerald-700/80 to-teal-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
-                      
-                      <!-- Card Content -->
-                      <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700">
-                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                          <!-- Icon -->
-                          <div class="w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v18H3V3zm16 0l-6 6 6 6"/>
-                            </svg>
-                          </div>
-                          
-                          <h3 class="text-xl font-bold text-emerald-200 mb-4">Market Access</h3>
-                          <p class="text-emerald-100 font-normal leading-relaxed max-w-sm mx-auto">
-                            Farmers connect directly with buyers, eliminating middlemen and ensuring fair prices for their produce
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Digital Tools Card -->
-                  <div class="w-full h-full flex-shrink-0">
-                    <div class="relative h-full group">
-                      <!-- Card Background -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/80 to-indigo-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-                      
-                      <!-- Card Content -->
-                      <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700">
-                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                          <!-- Icon -->
-                          <div class="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L2 7l10 5 10-5"/>
-                            </svg>
-                          </div>
-                          
-                          <h3 class="text-xl font-bold text-blue-200 mb-4">Digital Tools</h3>
-                          <p class="text-blue-100 font-normal leading-relaxed max-w-sm mx-auto">
-                            Mobile technology and modern farming equipment help increase productivity and crop quality
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Community Growth Card -->
-                  <div class="w-full h-full flex-shrink-0">
-                    <div class="relative h-full group">
-                      <!-- Card Background -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
-                      
-                      <!-- Card Content -->
-                      <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700">
-                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                          <!-- Icon -->
-                          <div class="w-20 h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                            </svg>
-                          </div>
-                          
-                          <h3 class="text-xl font-bold text-purple-200 mb-4">Community Growth</h3>
-                          <p class="text-purple-100 font-normal leading-relaxed max-w-sm mx-auto">
-                            Cooperatives and farming groups work together, sharing resources and knowledge for collective success
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Sustainable Future Card -->
-                  <div class="w-full h-full flex-shrink-0">
-                    <div class="relative h-full group">
-                      <!-- Card Background -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-orange-600/90 via-amber-600/80 to-yellow-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-                      
-                      <!-- Card Content -->
-                      <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700">
-                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                          <!-- Icon -->
-                          <div class="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-9 9 9 9"/>
-                            </svg>
-                          </div>
-                          
-                          <h3 class="text-xl font-bold text-orange-200 mb-4">Sustainable Future</h3>
-                          <p class="text-orange-100 font-normal leading-relaxed max-w-sm mx-auto">
-                            Environmentally friendly practices ensure productive land for future generations
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Financial Empowerment Card -->
-                  <div class="w-full h-full flex-shrink-0">
-                    <div class="relative h-full group">
-                      <!-- Card Background -->
-                      <div class="absolute inset-0 bg-gradient-to-br from-rose-600/90 via-pink-700/80 to-fuchsia-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-                      
-                      <!-- Card Content -->
-                      <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700">
-                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                          <!-- Icon -->
-                          <div class="w-20 h-20 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c0-3.3 0-6 0 1.7 0 6.6 0 3.4 0 6-1.7C12 16.8 16 20 20s-1.7 0-3.4 0-6-1.7c0-3.3 0-6 0-1.7-6-1.7s1.7 6 1.7 6 3.4z"/>
-                            </svg>
-                          </div>
-                          
-                          <h3 class="text-xl font-bold text-rose-200 mb-4">Financial Empowerment</h3>
-                          <p class="text-rose-100 font-normal leading-relaxed max-w-sm mx-auto">
-                            Access to microfinance and digital payments helps farmers invest in their operations and secure their financial future
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Mobile Navigation -->
-              <div class="flex justify-center mt-6 space-x-4">
-                <button
-                  @click="previousMobileCard"
-                  :disabled="mobileCardIndex === 0"
-                  class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white disabled:opacity-50 transition-all duration-300"
-                >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7 7"/>
-                  </svg>
-                </button>
-                <div class="flex space-x-2">
-                  <button
-                    v-for="(_, i) in 5"
-                    :key="i"
-                    @click="mobileCardIndex = i"
-                    class="w-2 h-2 rounded-full transition-all duration-300"
-                    :class="{
-                      'bg-emerald-400 w-8': mobileCardIndex === i,
-                      'bg-white/70': mobileCardIndex !== i
-                    }"
-                  ></button>
-                </div>
-                <button
-                  @click="nextMobileCard"
-                  :disabled="mobileCardIndex === 4"
-                  class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white disabled:opacity-50 transition-all duration-300"
-                >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7 7"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-            <!-- Desktop view (all cards) -->
-            <div class="hidden lg:flex lg:flex-row gap-6 md:gap-8 h-full">
-            <!-- Market Access Card -->
-            <div class="relative h-full group flex-shrink-0">
-              <!-- Card Background -->
+    <!-- Mobile carousel (single card) -->
+    <div class="lg:hidden">
+      <div class="relative overflow-hidden" x-data="{ mobileCardIndex: 0 }">
+        <div
+          class="flex transition-transform duration-500 ease-out"
+          :style="{ transform: `translateX(-${mobileCardIndex * 100}%)` }"
+        >
+          <!-- Market Access Card -->
+          <div class="w-full flex-shrink-0 px-4">
+            <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/90 via-emerald-700/80 to-teal-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
-              
-              <!-- Card Content -->
-              <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
-                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                  <!-- Icon with advanced hover -->
-                  <div class="w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-emerald-500/40 group-hover:to-emerald-600/50 transition-all duration-500">
-                    <svg class="w-12 h-12 text-emerald-300 group-hover:text-emerald-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v18H3V3zm16 0l-6 6 6 6"/>
+              <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700">
+                <div class="text-center relative z-10">
+                  <div class="w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                   </div>
-                  
-                  <h3 class="text-2xl font-bold text-emerald-200 mb-4 group-hover:text-white transition-colors duration-300">Market Access</h3>
-                  <p class="text-emerald-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-emerald-50 transition-colors duration-300">
+                  <h3 class="text-xl font-bold text-emerald-200 mb-4">Market Access</h3>
+                  <p class="text-emerald-100 font-normal leading-relaxed max-w-sm mx-auto">
                     Farmers connect directly with buyers, eliminating middlemen and ensuring fair prices for their produce
                   </p>
-                  
-                  <!-- Hover reveal effect -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-emerald-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Digital Tools Card -->
-            <div class="relative h-full group flex-shrink-0">
-              <!-- Card Background -->
+          <!-- Digital Tools Card -->
+          <div class="w-full flex-shrink-0 px-4">
+            <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/80 to-indigo-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              
-              <!-- Card Content -->
-              <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
-                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                  <!-- Icon with advanced hover -->
-                  <div class="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-blue-500/40 group-hover:to-blue-600/50 transition-all duration-500">
-                    <svg class="w-12 h-12 text-blue-300 group-hover:text-blue-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L2 7l10 5 10-5"/>
+              <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700">
+                <div class="text-center relative z-10">
+                  <div class="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
                   </div>
-                  
-                  <h3 class="text-2xl font-bold text-blue-200 mb-4 group-hover:text-white transition-colors duration-300">Digital Tools</h3>
-                  <p class="text-blue-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-blue-50 transition-colors duration-300">
+                  <h3 class="text-xl font-bold text-blue-200 mb-4">Digital Tools</h3>
+                  <p class="text-blue-100 font-normal leading-relaxed max-w-sm mx-auto">
                     Mobile technology and modern farming equipment help increase productivity and crop quality
                   </p>
-                  
-                  <!-- Hover reveal effect -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Community Growth Card -->
-            <div class="relative h-full group flex-shrink-0">
-              <!-- Card Background -->
-              <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              
-              <!-- Card Content -->
-              <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
-                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                  <!-- Icon with advanced hover -->
-                  <div class="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-purple-500/40 group-hover:to-purple-600/50 transition-all duration-500">
-                    <svg class="w-12 h-12 text-purple-300 group-hover:text-purple-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+          <!-- Community Growth Card -->
+          <div class="w-full flex-shrink-0 px-4">
+            <div class="relative group">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
+              <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700">
+                <div class="text-center relative z-10">
+                  <div class="w-20 h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                   </div>
-                  
-                  <h3 class="text-2xl font-bold text-purple-200 mb-4 group-hover:text-white transition-colors duration-300">Community Growth</h3>
-                  <p class="text-purple-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-purple-50 transition-colors duration-300">
+                  <h3 class="text-xl font-bold text-purple-200 mb-4">Community Growth</h3>
+                  <p class="text-purple-100 font-normal leading-relaxed max-w-sm mx-auto">
                     Cooperatives and farming groups work together, sharing resources and knowledge for collective success
                   </p>
-                  
-                  <!-- Hover reveal effect -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-purple-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Sustainable Future Card -->
-            <div class="relative h-full group flex-shrink-0">
-              <!-- Card Background -->
+          <!-- Sustainable Future Card -->
+          <div class="w-full flex-shrink-0 px-4">
+            <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-orange-600/90 via-amber-600/80 to-yellow-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              
-              <!-- Card Content -->
-              <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
-                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                  <!-- Icon with advanced hover -->
-                  <div class="w-24 h-24 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-orange-500/40 group-hover:to-amber-600/50 transition-all duration-500">
-                    <svg class="w-12 h-12 text-orange-300 group-hover:text-orange-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-9 9 9 9"/>
+              <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700">
+                <div class="text-center relative z-10">
+                  <div class="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                   </div>
-                  
-                  <h3 class="text-2xl font-bold text-orange-200 mb-4 group-hover:text-white transition-colors duration-300">Sustainable Future</h3>
-                  <p class="text-orange-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-orange-50 transition-colors duration-300">
+                  <h3 class="text-xl font-bold text-orange-200 mb-4">Sustainable Future</h3>
+                  <p class="text-orange-100 font-normal leading-relaxed max-w-sm mx-auto">
                     Environmentally friendly practices ensure productive land for future generations
                   </p>
-                  
-                  <!-- Hover reveal effect -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-orange-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Financial Empowerment Card -->
-            <div class="relative h-full group flex-shrink-0">
-              <!-- Card Background -->
+          <!-- Financial Empowerment Card -->
+          <div class="w-full flex-shrink-0 px-4">
+            <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-rose-600/90 via-pink-700/80 to-fuchsia-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              
-              <!-- Card Content -->
-              <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
-                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
-                  <!-- Icon with advanced hover -->
-                  <div class="w-24 h-24 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-rose-500/40 group-hover:to-pink-600/50 transition-all duration-500">
-                    <svg class="w-12 h-12 text-rose-300 group-hover:text-rose-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c0-3.3 0-6 0 1.7 0 6.6 0 3.4 0 6-1.7C12 16.8 16 20 20s-1.7 0-3.4 0-6-1.7c0-3.3 0-6 0-1.7-6-1.7s1.7 6 1.7 6 3.4z"/>
+              <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700">
+                <div class="text-center relative z-10">
+                  <div class="w-20 h-20 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                   </div>
-                  
-                  <h3 class="text-2xl font-bold text-rose-200 mb-4 group-hover:text-white transition-colors duration-300">Financial Empowerment</h3>
-                  <p class="text-rose-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-rose-50 transition-colors duration-300">
+                  <h3 class="text-xl font-bold text-rose-200 mb-4">Financial Empowerment</h3>
+                  <p class="text-rose-100 font-normal leading-relaxed max-w-sm mx-auto">
                     Access to microfinance and digital payments helps farmers invest in their operations and secure their financial future
                   </p>
-                  
-                  <!-- Hover reveal effect -->
-                  <div class="absolute inset-0 bg-gradient-to-t from-rose-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-     <!-- Agriculture Section - Clean White Layout -->
-<section class="w-full bg-white py-24">
-  <div class="w-full px-6 md:px-16 lg:px-24 mb-16">
-    <h2 class="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 tracking-tight">
-      Thriving Communities Rooted in Agriculture
-    </h2>
+      </div>
+      
+      <!-- Mobile Navigation -->
+      <div class="flex justify-center mt-8 space-x-4" x-data="{ mobileCardIndex: 0 }">
+        <button
+          @click="mobileCardIndex = mobileCardIndex > 0 ? mobileCardIndex - 1 : 0"
+          :disabled="mobileCardIndex === 0"
+          class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white disabled:opacity-50 transition-all duration-300 hover:bg-white/30"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <div class="flex space-x-2 items-center">
+          <template x-for="i in 5">
+            <button
+              @click="mobileCardIndex = i - 1"
+              class="h-2 rounded-full transition-all duration-300"
+              :class="{
+                'bg-emerald-400 w-8': mobileCardIndex === i - 1,
+                'bg-white/50 w-2': mobileCardIndex !== i - 1
+              }"
+            ></button>
+          </template>
+        </div>
+        <button
+          @click="mobileCardIndex = mobileCardIndex < 4 ? mobileCardIndex + 1 : 4"
+          :disabled="mobileCardIndex === 4"
+          class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white disabled:opacity-50 transition-all duration-300 hover:bg-white/30"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
 
-    <p class="w-full text-left text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-normal">
-      Across rural Tanzania, agriculture is more than farming — it is a source of joy, unity, 
-      and shared prosperity. Communities come together to cultivate the land, celebrate harvests, 
-      and support one another through every season. The smiles in our fields reflect opportunity, 
-      dignity, and hope. Through agriculture, families earn sustainable incomes, children grow in 
-      secure environments, and villages flourish with renewed energy and pride.
-    </p>
-  </div>
+    <!-- Desktop view (full width grid) -->
+    <div class="hidden lg:grid lg:grid-cols-5 gap-6">
+      <!-- Market Access Card -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/90 via-emerald-700/80 to-teal-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
+        <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-6 h-full flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700">
+          <div class="text-center relative z-10">
+            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:from-emerald-500/40 group-hover:to-emerald-600/50 transition-all duration-500">
+              <svg class="w-8 h-8 text-emerald-300 group-hover:text-emerald-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-emerald-200 mb-2 group-hover:text-white transition-colors duration-300">Market Access</h3>
+            <p class="text-emerald-100 text-sm font-normal leading-relaxed group-hover:text-emerald-50 transition-colors duration-300">
+              Farmers connect directly with buyers, eliminating middlemen and ensuring fair prices for their produce
+            </p>
+          </div>
+        </div>
+      </div>
 
-  <!-- Full Width Image -->
-  <div class="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
-    <img
-      src="/images/heroes/g.jpeg"
-      alt="Agriculture in Tanzania"
-      class="w-full h-full object-cover"
-    />
+      <!-- Digital Tools Card -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/80 to-indigo-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+        <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-6 h-full flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700">
+          <div class="text-center relative z-10">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:from-blue-500/40 group-hover:to-blue-600/50 transition-all duration-500">
+              <svg class="w-8 h-8 text-blue-300 group-hover:text-blue-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-blue-200 mb-2 group-hover:text-white transition-colors duration-300">Digital Tools</h3>
+            <p class="text-blue-100 text-sm font-normal leading-relaxed group-hover:text-blue-50 transition-colors duration-300">
+              Mobile technology and modern farming equipment help increase productivity and crop quality
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Community Growth Card -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
+        <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-6 h-full flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700">
+          <div class="text-center relative z-10">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:from-purple-500/40 group-hover:to-purple-600/50 transition-all duration-500">
+              <svg class="w-8 h-8 text-purple-300 group-hover:text-purple-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-purple-200 mb-2 group-hover:text-white transition-colors duration-300">Community Growth</h3>
+            <p class="text-purple-100 text-sm font-normal leading-relaxed group-hover:text-purple-50 transition-colors duration-300">
+              Cooperatives and farming groups work together, sharing resources and knowledge for collective success
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sustainable Future Card -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-600/90 via-amber-600/80 to-yellow-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+        <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-6 h-full flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700">
+          <div class="text-center relative z-10">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:from-orange-500/40 group-hover:to-amber-600/50 transition-all duration-500">
+              <svg class="w-8 h-8 text-orange-300 group-hover:text-orange-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-orange-200 mb-2 group-hover:text-white transition-colors duration-300">Sustainable Future</h3>
+            <p class="text-orange-100 text-sm font-normal leading-relaxed group-hover:text-orange-50 transition-colors duration-300">
+              Environmentally friendly practices ensure productive land for future generations
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Empowerment Card -->
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-br from-rose-600/90 via-pink-700/80 to-fuchsia-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+        <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-6 h-full flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700">
+          <div class="text-center relative z-10">
+            <div class="w-16 h-16 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:from-rose-500/40 group-hover:to-pink-600/50 transition-all duration-500">
+              <svg class="w-8 h-8 text-rose-300 group-hover:text-rose-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-rose-200 mb-2 group-hover:text-white transition-colors duration-300">Financial Empowerment</h3>
+            <p class="text-rose-100 text-sm font-normal leading-relaxed group-hover:text-rose-50 transition-colors duration-300">
+              Access to microfinance and digital payments helps farmers invest in their operations and secure their financial future
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+  <!-- Agriculture Section - Text Over Image -->
+<section class="relative w-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
+
+  <!-- Background Image -->
+  <img
+    src="/images/heroes/g.jpeg"
+    alt="Agriculture in Tanzania"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- Dark Gradient Overlay (for readability) -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/20"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 w-full px-4 md:px-8 lg:px-12 pt-12 md:pt-16 lg:pt-20">
+
+    <div class="max-w-5xl">
+
+      <span class="inline-block text-emerald-400 font-semibold tracking-wider uppercase text-sm mb-4">
+        Our Mission
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
+        Thriving Communities Rooted in 
+        <span class="text-emerald-400">Agriculture</span>
+      </h2>
+
+      <div class="w-20 h-1 bg-emerald-400 mb-6 rounded-full"></div>
+
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed font-normal max-w-4xl">
+        Across rural Tanzania, agriculture is more than farming — it is a source of joy, unity, 
+        and shared prosperity. Communities come together to cultivate the land, celebrate harvests, 
+        and support one another through every season. The smiles in our fields reflect opportunity, 
+        dignity, and hope. Through agriculture, families earn sustainable incomes, children grow in 
+        secure environments, and villages flourish with renewed energy and pride.
+      </p>
+
+    </div>
+  </div>
+
+</section>
       <!-- Final CTA Section -->
-      <section class="py-20 bg-accent-600/90 backdrop-blur-sm">
+      <section class="py-8 bg-accent-600/90 backdrop-blur-sm">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             Join Tanzania's Agricultural Revolution
