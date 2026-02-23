@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen relative">
+  <div class="min-h-screen relative font-inter">
     <!-- Background Image -->
     <div class="fixed inset-0 z-0">
       <div
@@ -45,13 +45,13 @@
               <!-- Text content with relative positioning for mobile -->
               <div :class="{ 'relative z-10': isMobile }">
                 <h1
-                  class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight mb-2 sm:mb-2"
+                  class="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-2 sm:mb-2 tracking-tight"
                 >
                   {{ languageStore.t("sustainableFarm") }}
                 </h1>
 
                 <p
-                  class="text-lg sm:text-xl text-white/80 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0"
+                  class="text-lg sm:text-xl text-white/80 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed"
                 >
                   {{ languageStore.t("connectingFarmers") }}
                 </p>
@@ -61,14 +61,14 @@
                 >
                   <router-link
                     to="/register"
-                    class="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition duration-300 hover:scale-105 shadow-lg text-center"
+                    class="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg transition duration-300 hover:scale-105 shadow-lg text-center"
                   >
                     {{ languageStore.t("getStarted") }}
                   </router-link>
 
                   <router-link
                     to="/login"
-                    class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition duration-300 hover:scale-105 text-center"
+                    class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg transition duration-300 hover:scale-105 text-center"
                   >
                     {{ languageStore.t("signIn") }}
                   </router-link>
@@ -391,11 +391,11 @@
       <section class="py-20 bg-white/95 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {{ languageStore.t("howItWorks") }}
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+              Simple Steps to Get Started
             </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              {{ languageStore.t("empoweringFarmers") }}
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
+              Begin your journey in minutes with our streamlined onboarding process
             </p>
           </div>
 
@@ -434,11 +434,11 @@
       <section class="py-20 bg-earth-50/90 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Join Our Community
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+              Find Your Role in Ecosystem
             </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-              SFMP Tanzania serves different roles in the agricultural ecosystem
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
+              Whether you grow, buy, or organize, there's a place for you in our network
             </p>
           </div>
 
@@ -450,8 +450,8 @@
                 <UserPlus class="w-8 h-8 text-primary-600" />
               </div>
               <h3 class="text-xl font-semibold mb-2">Farmers</h3>
-              <p class="text-gray-600">
-                Grow and manage crops with digital tools
+              <p class="text-gray-600 font-normal leading-relaxed">
+                Cultivate success with smart farming tools and direct market access
               </p>
             </div>
 
@@ -462,8 +462,8 @@
                 <ShoppingCart class="w-8 h-8 text-accent-600" />
               </div>
               <h3 class="text-xl font-semibold mb-2">Buyers</h3>
-              <p class="text-gray-600">
-                Connect directly with farmers and purchase quality produce
+              <p class="text-gray-600 font-normal leading-relaxed">
+                Source premium produce directly from verified Tanzanian farmers
               </p>
             </div>
 
@@ -474,16 +474,16 @@
                 <Users class="w-8 h-8 text-earth-600" />
               </div>
               <h3 class="text-xl font-semibold mb-2">Cooperatives</h3>
-              <p class="text-gray-600">
-                Manage groups of farmers and aggregate production
+              <p class="text-gray-600 font-normal leading-relaxed">
+                Empower farming communities with collective strength and shared resources
               </p>
             </div>
 
             <div class="card p-6 hover:shadow-lg transition-shadow">
               <div class="text-3xl mb-4">📊</div>
               <h3 class="text-lg font-semibold mb-2">Administrators</h3>
-              <p class="text-gray-600 text-sm mb-4">
-                Oversee operations, analyze data, and ensure platform quality
+              <p class="text-gray-600 text-sm mb-4 font-normal leading-relaxed">
+                Drive agricultural transformation through data-driven insights and platform excellence
               </p>
               <ul class="text-sm text-gray-500 space-y-1">
                 <li>• System oversight</li>
@@ -509,113 +509,186 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-12">
+          <div class="text-center mb-16">
             <h2
-              class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
+              class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight"
             >
-              Impact in Numbers
+              Transforming Lives Through Agriculture
             </h2>
-            <p class="text-xl text-emerald-50 max-w-2xl mx-auto">
-              Making a difference across Tanzania's agricultural landscape
+            <p class="text-xl text-emerald-50 max-w-2xl mx-auto font-normal leading-relaxed">
+              Real stories of change from communities across Tanzania
             </p>
           </div>
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            <div
-              class="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
-            >
-              <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                10,000+
+          <!-- Single row layout for cards -->
+          <div class="flex flex-row gap-6 md:gap-8 h-full overflow-x-auto">
+            <!-- Market Access Card -->
+            <div class="relative h-full group flex-shrink-0">
+              <!-- Card Background -->
+              <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/90 via-emerald-700/80 to-teal-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
+              
+              <!-- Card Content -->
+              <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
+                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                  <!-- Icon with advanced hover -->
+                  <div class="w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-emerald-500/40 group-hover:to-emerald-600/50 transition-all duration-500">
+                    <svg class="w-12 h-12 text-emerald-300 group-hover:text-emerald-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v18H3V3zm16 0l-6 6 6 6"/>
+                    </svg>
+                  </div>
+                  
+                  <h3 class="text-2xl font-bold text-emerald-200 mb-4 group-hover:text-white transition-colors duration-300">Market Access</h3>
+                  <p class="text-emerald-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-emerald-50 transition-colors duration-300">
+                    Farmers connect directly with buyers, eliminating middlemen and ensuring fair prices for their produce
+                  </p>
+                  
+                  <!-- Hover reveal effect -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-emerald-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
+                </div>
               </div>
-              <p class="text-emerald-50 font-medium">Farmers Connected</p>
             </div>
 
-            <div
-              class="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
-            >
-              <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                50,000+
+            <!-- Digital Tools Card -->
+            <div class="relative h-full group flex-shrink-0">
+              <!-- Card Background -->
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/80 to-indigo-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+              
+              <!-- Card Content -->
+              <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
+                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                  <!-- Icon with advanced hover -->
+                  <div class="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-blue-500/40 group-hover:to-blue-600/50 transition-all duration-500">
+                    <svg class="w-12 h-12 text-blue-300 group-hover:text-blue-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L2 7l10 5 10-5"/>
+                    </svg>
+                  </div>
+                  
+                  <h3 class="text-2xl font-bold text-blue-200 mb-4 group-hover:text-white transition-colors duration-300">Digital Tools</h3>
+                  <p class="text-blue-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-blue-50 transition-colors duration-300">
+                    Mobile technology and modern farming equipment help increase productivity and crop quality
+                  </p>
+                  
+                  <!-- Hover reveal effect -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
+                </div>
               </div>
-              <p class="text-emerald-50 font-medium">Tons of Produce Traded</p>
             </div>
 
-            <div
-              class="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
-            >
-              <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                500+
+            <!-- Community Growth Card -->
+            <div class="relative h-full group flex-shrink-0">
+              <!-- Card Background -->
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+              
+              <!-- Card Content -->
+              <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
+                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                  <!-- Icon with advanced hover -->
+                  <div class="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-purple-500/40 group-hover:to-purple-600/50 transition-all duration-500">
+                    <svg class="w-12 h-12 text-purple-300 group-hover:text-purple-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    </svg>
+                  </div>
+                  
+                  <h3 class="text-2xl font-bold text-purple-200 mb-4 group-hover:text-white transition-colors duration-300">Community Growth</h3>
+                  <p class="text-purple-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-purple-50 transition-colors duration-300">
+                    Cooperatives and farming groups work together, sharing resources and knowledge for collective success
+                  </p>
+                  
+                  <!-- Hover reveal effect -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-purple-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
+                </div>
               </div>
-              <p class="text-emerald-50 font-medium">Buyer Partners</p>
             </div>
 
-            <div
-              class="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
-            >
-              <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                25%
+            <!-- Sustainable Future Card -->
+            <div class="relative h-full group flex-shrink-0">
+              <!-- Card Background -->
+              <div class="absolute inset-0 bg-gradient-to-br from-orange-600/90 via-amber-600/80 to-yellow-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+              
+              <!-- Card Content -->
+              <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
+                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                  <!-- Icon with advanced hover -->
+                  <div class="w-24 h-24 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-orange-500/40 group-hover:to-amber-600/50 transition-all duration-500">
+                    <svg class="w-12 h-12 text-orange-300 group-hover:text-orange-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-9 9 9 9"/>
+                    </svg>
+                  </div>
+                  
+                  <h3 class="text-2xl font-bold text-orange-200 mb-4 group-hover:text-white transition-colors duration-300">Sustainable Future</h3>
+                  <p class="text-orange-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-orange-50 transition-colors duration-300">
+                    Environmentally friendly practices ensure productive land for future generations
+                  </p>
+                  
+                  <!-- Hover reveal effect -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-orange-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
+                </div>
               </div>
-              <p class="text-emerald-50 font-medium">Income Increase</p>
+            </div>
+
+            <!-- Financial Empowerment Card -->
+            <div class="relative h-full group flex-shrink-0">
+              <!-- Card Background -->
+              <div class="absolute inset-0 bg-gradient-to-br from-rose-600/90 via-pink-700/80 to-fuchsia-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+              
+              <!-- Card Content -->
+              <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-8 md:p-10 h-full flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700 min-w-0 flex-shrink-0">
+                <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                  <!-- Icon with advanced hover -->
+                  <div class="w-24 h-24 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-rose-500/40 group-hover:to-pink-600/50 transition-all duration-500">
+                    <svg class="w-12 h-12 text-rose-300 group-hover:text-rose-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c0-3.3 0-6 0 1.7 0 6.6 0 3.4 0 6-1.7C12 16.8 16 20 20s-1.7 0-3.4 0-6-1.7c0-3.3 0-6 0-1.7-6-1.7s1.7 6 1.7 6 3.4z"/>
+                    </svg>
+                  </div>
+                  
+                  <h3 class="text-2xl font-bold text-rose-200 mb-4 group-hover:text-white transition-colors duration-300">Financial Empowerment</h3>
+                  <p class="text-rose-100 font-normal leading-relaxed max-w-sm mx-auto group-hover:text-rose-50 transition-colors duration-300">
+                    Access to microfinance and digital payments helps farmers invest in their operations and secure their financial future
+                  </p>
+                  
+                  <!-- Hover reveal effect -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-rose-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- Related Section -->
-      <!-- Related Section -->
-      <section
-        class="relative w-full py-16 md:py-24 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50/70 overflow-hidden min-h-[500px] sm:min-h-[550px] md:min-h-[600px] lg:min-h-[700px]"
-      >
-        <!-- Background pattern -->
-        <div class="absolute inset-0 opacity-10">
-          <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(16,185,129,0.08)_0%,transparent_50%)]"
-          ></div>
-        </div>
+     <!-- Agriculture Section - Clean White Layout -->
+<section class="w-full bg-white py-24">
+  <div class="w-full px-6 md:px-16 lg:px-24 mb-16">
+    <h2 class="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 tracking-tight">
+      Thriving Communities Rooted in Agriculture
+    </h2>
 
-        <div
-          class="relative z-10 w-full h-full flex flex-col items-center justify-center"
-        >
-          <!-- Header -->
-          <div class="text-center mb-12 max-w-3xl px-4"></div>
+    <p class="w-full text-left text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-normal">
+      Across rural Tanzania, agriculture is more than farming — it is a source of joy, unity, 
+      and shared prosperity. Communities come together to cultivate the land, celebrate harvests, 
+      and support one another through every season. The smiles in our fields reflect opportunity, 
+      dignity, and hope. Through agriculture, families earn sustainable incomes, children grow in 
+      secure environments, and villages flourish with renewed energy and pride.
+    </p>
+  </div>
 
-          <!-- Full-width Image -->
-          <div
-            class="w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
-          >
-            <img
-              src="/images/heroes/g.jpeg"
-              alt="Related Initiative"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <!-- Optional Call-to-Action Button -->
-          <div class="mt-8"></div>
-        </div>
-      </section>
+  <!-- Full Width Image -->
+  <div class="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
+    <img
+      src="/images/heroes/g.jpeg"
+      alt="Agriculture in Tanzania"
+      class="w-full h-full object-cover"
+    />
+  </div>
+</section>
       <!-- Final CTA Section -->
       <section class="py-20 bg-accent-600/90 backdrop-blur-sm">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Farming Journey?
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+            Join Tanzania's Agricultural Revolution
           </h2>
-          <p class="text-xl text-accent-100 mb-8">
-            Join thousands of Tanzanian farmers who are already benefiting from
-            SFMP's digital platform.
+          <p class="text-xl text-accent-100 mb-8 font-normal leading-relaxed">
+            Be part of the digital transformation that's empowering farmers 
+            and strengthening communities across the nation.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <router-link
-              to="/register"
-              class="btn-primary bg-white text-accent-600 hover:bg-accent-50 px-8 py-3 text-lg"
-            >
-              Get Started Today
-            </router-link>
-            <router-link
-              to="/contact"
-              class="btn-secondary bg-accent-700 text-white hover:bg-accent-800 px-8 py-3 text-lg border-accent-500"
-            >
-              Contact Us
-            </router-link>
-          </div>
         </div>
       </section>
     </div>

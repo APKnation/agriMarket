@@ -4,7 +4,7 @@
     <div class="w-16 bg-white shadow-sm border-r border-gray-200 flex flex-col">
       <div class="p-4 border-b border-gray-200">
         <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-lg">🌾</span>
+          <span class="text-white font-bold text-lg">SFMP</span>
         </div>
       </div>
       <nav class="flex-1 py-4">

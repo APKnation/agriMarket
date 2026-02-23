@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center">
           <div class="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-white font-bold text-3xl">🌾</span>
+            <span class="text-white font-bold text-3xl">SFMP</span>
           </div>
           <h2 class="text-3xl font-bold text-gray-900">{{ languageStore.t('joinSFMP') }}</h2>
           <p class="mt-2 text-sm text-gray-600">{{ languageStore.t('connectTanzanian') }}</p>
