@@ -520,8 +520,180 @@
             </p>
           </div>
 
-          <!-- Single row layout for cards -->
-          <div class="flex flex-row gap-6 md:gap-8 h-full overflow-x-auto">
+          <!-- Mobile-first carousel with single card display -->
+          <div class="relative h-full">
+            <!-- Mobile carousel (single card) -->
+            <div class="lg:hidden">
+              <div class="relative h-full overflow-hidden">
+                <div
+                  class="flex h-full transition-transform duration-500 ease-out"
+                  :style="{ transform: `translateX(-${mobileCardIndex * 100}%)` }"
+                >
+                  <!-- Market Access Card -->
+                  <div class="w-full h-full flex-shrink-0">
+                    <div class="relative h-full group">
+                      <!-- Card Background -->
+                      <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/90 via-emerald-700/80 to-teal-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
+                      
+                      <!-- Card Content -->
+                      <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700">
+                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                          <!-- Icon -->
+                          <div class="w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v18H3V3zm16 0l-6 6 6 6"/>
+                            </svg>
+                          </div>
+                          
+                          <h3 class="text-xl font-bold text-emerald-200 mb-4">Market Access</h3>
+                          <p class="text-emerald-100 font-normal leading-relaxed max-w-sm mx-auto">
+                            Farmers connect directly with buyers, eliminating middlemen and ensuring fair prices for their produce
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Digital Tools Card -->
+                  <div class="w-full h-full flex-shrink-0">
+                    <div class="relative h-full group">
+                      <!-- Card Background -->
+                      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/80 to-indigo-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+                      
+                      <!-- Card Content -->
+                      <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700">
+                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                          <!-- Icon -->
+                          <div class="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L2 7l10 5 10-5"/>
+                            </svg>
+                          </div>
+                          
+                          <h3 class="text-xl font-bold text-blue-200 mb-4">Digital Tools</h3>
+                          <p class="text-blue-100 font-normal leading-relaxed max-w-sm mx-auto">
+                            Mobile technology and modern farming equipment help increase productivity and crop quality
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Community Growth Card -->
+                  <div class="w-full h-full flex-shrink-0">
+                    <div class="relative h-full group">
+                      <!-- Card Background -->
+                      <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
+                      
+                      <!-- Card Content -->
+                      <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700">
+                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                          <!-- Icon -->
+                          <div class="w-20 h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            </svg>
+                          </div>
+                          
+                          <h3 class="text-xl font-bold text-purple-200 mb-4">Community Growth</h3>
+                          <p class="text-purple-100 font-normal leading-relaxed max-w-sm mx-auto">
+                            Cooperatives and farming groups work together, sharing resources and knowledge for collective success
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Sustainable Future Card -->
+                  <div class="w-full h-full flex-shrink-0">
+                    <div class="relative h-full group">
+                      <!-- Card Background -->
+                      <div class="absolute inset-0 bg-gradient-to-br from-orange-600/90 via-amber-600/80 to-yellow-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+                      
+                      <!-- Card Content -->
+                      <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700">
+                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                          <!-- Icon -->
+                          <div class="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-9 9 9 9"/>
+                            </svg>
+                          </div>
+                          
+                          <h3 class="text-xl font-bold text-orange-200 mb-4">Sustainable Future</h3>
+                          <p class="text-orange-100 font-normal leading-relaxed max-w-sm mx-auto">
+                            Environmentally friendly practices ensure productive land for future generations
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Financial Empowerment Card -->
+                  <div class="w-full h-full flex-shrink-0">
+                    <div class="relative h-full group">
+                      <!-- Card Background -->
+                      <div class="absolute inset-0 bg-gradient-to-br from-rose-600/90 via-pink-700/80 to-fuchsia-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
+                      
+                      <!-- Card Content -->
+                      <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-8 h-full flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700">
+                        <div class="text-center relative z-10 flex-1 flex flex-col justify-center">
+                          <!-- Icon -->
+                          <div class="w-20 h-20 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c0-3.3 0-6 0 1.7 0 6.6 0 3.4 0 6-1.7C12 16.8 16 20 20s-1.7 0-3.4 0-6-1.7c0-3.3 0-6 0-1.7-6-1.7s1.7 6 1.7 6 3.4z"/>
+                            </svg>
+                          </div>
+                          
+                          <h3 class="text-xl font-bold text-rose-200 mb-4">Financial Empowerment</h3>
+                          <p class="text-rose-100 font-normal leading-relaxed max-w-sm mx-auto">
+                            Access to microfinance and digital payments helps farmers invest in their operations and secure their financial future
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Mobile Navigation -->
+              <div class="flex justify-center mt-6 space-x-4">
+                <button
+                  @click="previousMobileCard"
+                  :disabled="mobileCardIndex === 0"
+                  class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white disabled:opacity-50 transition-all duration-300"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7 7"/>
+                  </svg>
+                </button>
+                <div class="flex space-x-2">
+                  <button
+                    v-for="(_, i) in 5"
+                    :key="i"
+                    @click="mobileCardIndex = i"
+                    class="w-2 h-2 rounded-full transition-all duration-300"
+                    :class="{
+                      'bg-emerald-400 w-8': mobileCardIndex === i,
+                      'bg-white/70': mobileCardIndex !== i
+                    }"
+                  ></button>
+                </div>
+                <button
+                  @click="nextMobileCard"
+                  :disabled="mobileCardIndex === 4"
+                  class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white disabled:opacity-50 transition-all duration-300"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7 7"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+            <!-- Desktop view (all cards) -->
+            <div class="hidden lg:flex lg:flex-row gap-6 md:gap-8 h-full">
             <!-- Market Access Card -->
             <div class="relative h-full group flex-shrink-0">
               <!-- Card Background -->
