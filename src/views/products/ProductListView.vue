@@ -58,7 +58,33 @@
         />
       </div>
 
-      <!-- Empty State -->
+      <!-- Cart Summary -->
+    <div v-if="cart.length > 0" class="fixed bottom-0 right-0 bg-white shadow-2xl border-t border-gray-200 p-4 rounded-tl-lg z-50 w-80">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-semibold text-gray-900">Shopping Cart ({{ cart.length }} items)</h3>
+        <button @click="clearCart" class="text-sm text-red-600 hover:text-red-800">Clear All</button>
+      </div>
+      <div class="space-y-2 max-h-40 overflow-y-auto">
+        <div v-for="(item, index) in cart" :key="item.id" class="flex justify-between items-center p-2 bg-gray-50 rounded">
+          <div class="flex-1">
+            <p class="text-sm font-medium text-gray-900">{{ item.name }}</p>
+            <p class="text-xs text-gray-600">{{ item.quantity }} {{ item.unit }} × TZS {{ item.price.toLocaleString() }}</p>
+          </div>
+          <button @click="removeFromCart(index)" class="text-red-600 hover:text-red-800">
+            <X class="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+      <div class="border-t pt-3 mt-3">
+        <div class="flex justify-between items-center">
+          <span class="font-semibold text-gray-900">Total:</span>
+          <span class="text-xl font-bold text-green-600">TZS {{ cartTotal.toLocaleString() }}</span>
+        </div>
+        <button @click="checkout" class="w-full btn-primary mt-3">Proceed to Checkout</button>
+      </div>
+    </div>
+
+    <!-- Empty State -->
       <div v-if="filteredProducts.length === 0" class="text-center py-12">
         <div class="card p-8 max-w-md mx-auto">
           <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -75,6 +101,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import ProductCard from '@/components/common/ProductCard.vue'
 
 // Sample product data
@@ -150,6 +177,68 @@ const selectedCategory = ref('')
 const sortBy = ref('name')
 const priceRange = ref('')
 
+// Shopping cart functionality
+const cart = ref([])
+const showCart = ref(false)
+
+// Add to cart function
+const addToCart = (product) => {
+  const existingItem = cart.value.find(item => item.id === product.id)
+  
+  if (existingItem) {
+    // Update quantity if item already exists
+    existingItem.quantity += 1
+  } else {
+    // Add new item to cart
+    cart.value.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      unit: product.unit || 'kg',
+      image: product.image,
+      farmer: product.farmer || 'Local Farmer'
+    })
+  }
+  
+  // Save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cart.value))
+  
+  console.log('Added to cart:', product.name)
+}
+
+// Remove from cart function
+const removeFromCart = (index) => {
+  cart.value.splice(index, 1)
+  // Save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cart.value))
+}
+
+// Clear cart function
+const clearCart = () => {
+  cart.value = []
+  // Clear cart from localStorage
+  localStorage.removeItem('cart')
+}
+
+// Calculate cart total
+const cartTotal = computed(() => {
+  return cart.value.reduce((total, item) => {
+    return total + (item.price * item.quantity)
+  }, 0)
+})
+
+const router = useRouter()
+
+// Checkout function
+const checkout = () => {
+  if (cart.value.length === 0) return
+  
+  console.log('Proceeding to checkout with items:', cart.value)
+  // Navigate to real checkout page
+  router.push('/checkout')
+}
+
 const filteredProducts = computed(() => {
   let filtered = sampleProducts.value
 
@@ -179,14 +268,6 @@ const filteredProducts = computed(() => {
 
   return filtered
 })
-
-const viewProductDetails = (product) => {
-  console.log('Viewing product details:', product)
-}
-
-const addToCart = (product) => {
-  console.log('Adding to cart:', product)
-}
 
 const toggleFavorite = (product) => {
   console.log('Toggling favorite:', product)
