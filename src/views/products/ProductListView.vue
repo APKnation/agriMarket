@@ -273,12 +273,14 @@ const viewProductDetails = (product) => {
 
 // Toggle favorite
 const toggleFavorite = (product) => {
-  console.log('Toggle favorite:', product.name)
+  console.log('Toggling favorite:', product)
+  showNotification(`${product.name} added to favorites!`)
 }
 
 // Contact seller
 const contactSeller = (product) => {
   console.log('Contact seller:', product.farmerName || 'Farmer')
+  router.push(`/contact?seller=${product.farmer}&product=${product.id}`)
 }
 
 // Shopping cart functionality
@@ -366,61 +368,6 @@ const checkout = () => {
 // View cart function
 const viewCart = () => {
   showCart.value = !showCart.value
-}
-
-// Load cart from localStorage on mount
-onMounted(() => {
-  try {
-    const savedCart = localStorage.getItem('cart')
-    if (savedCart) {
-      cart.value = JSON.parse(savedCart)
-      console.log('Loaded cart from storage:', cart.value)
-    }
-  } catch (e) {
-    console.error('Error loading cart:', e)
-  }
-})
-
-  // Filter by category
-  if (selectedCategory.value) {
-    filtered = filtered.filter(product => product.category === selectedCategory.value)
-  }
-
-  // Filter by price range
-  if (priceRange.value) {
-    filtered = filtered.filter(product => {
-      if (priceRange.value === '0-1000') return product.price <= 1000
-      if (priceRange.value === '1000-5000') return product.price > 1000 && product.price <= 5000
-      if (priceRange.value === '5000+') return product.price > 5000
-      return true
-    })
-  }
-
-  // Sort products
-  filtered.sort((a, b) => {
-    if (sortBy.value === 'name') return a.name.localeCompare(b.name)
-    if (sortBy.value === 'price-low') return a.price - b.price
-    if (sortBy.value === 'price-high') return b.price - a.price
-    if (sortBy.value === 'rating') return b.rating - a.rating
-    return 0
-  })
-
-  return filtered
-})
-
-const viewProductDetails = (product) => {
-  console.log('Viewing details:', product)
-  router.push(`/products/${product.id}`)
-}
-
-const toggleFavorite = (product) => {
-  console.log('Toggling favorite:', product)
-  showNotification(`${product.name} added to favorites!`)
-}
-
-const contactSeller = (product) => {
-  console.log('Contacting seller:', product)
-  router.push(`/contact?seller=${product.farmer}&product=${product.id}`)
 }
 
 // Format price helper

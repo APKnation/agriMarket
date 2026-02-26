@@ -190,10 +190,10 @@
                   {{ formatDate(order.date) }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                  <button @click="viewOrder(order)" class="text-emerald-600 hover:text-emerald-900">View</button>
-                  <button @click="editOrder(order)" class="text-blue-600 hover:text-blue-900">Edit</button>
-                  <button @click="downloadInvoice(order)" class="text-gray-600 hover:text-gray-900">PDF</button>
-                  <button @click="deleteOrder(order)" class="text-red-600 hover:text-red-900">Delete</button>
+                  <button @click="viewOrder(order)" class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded hover:bg-emerald-200 transition-colors">View</button>
+                  <button @click="editOrder(order)" class="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors">Edit</button>
+                  <button @click="downloadInvoice(order)" class="px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors">PDF</button>
+                  <button @click="deleteOrder(order)" class="px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors">Delete</button>
                 </td>
               </tr>
             </tbody>
@@ -203,18 +203,9 @@
 
       <!-- Order Details Modal -->
       <div v-if="showOrderModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-        <!-- Debug info -->
-        <div class="fixed top-4 left-4 bg-red-500 text-white p-2 rounded z-50">
-          DEBUG: Modal should be visible! showOrderModal: {{ showOrderModal }}
-        </div>
         
         <div class="relative top-20 mx-auto p-5 border w-11/12 max-w-4xl shadow-lg rounded-lg bg-white">
           <div v-if="selectedOrder" class="mt-3">
-            <!-- Debug info -->
-            <div class="bg-yellow-100 p-2 mb-4 rounded">
-              DEBUG: Order ID: {{ selectedOrder.id }}, Customer: {{ selectedOrder.customer?.name }}
-            </div>
-            
             <div class="flex justify-between items-start mb-6">
               <div>
                 <h3 class="text-xl font-bold text-gray-900">Order #{{ selectedOrder.id }}</h3>
@@ -422,7 +413,13 @@
                         <div class="space-y-2">
                           <div>
                             <label class="block text-xs font-medium text-gray-700 mb-1">Product Name</label>
-                            <input v-model="item.name" type="text" class="w-full px-2 py-1 text-sm border border-gray-300 rounded" placeholder="Product name">
+                            <input 
+                              v-model="item.name" 
+                              @input="onItemChange(index, 'name', $event.target.value)"
+                              type="text" 
+                              class="w-full px-2 py-1 text-sm border border-gray-300 rounded" 
+                              placeholder="Product name"
+                            >
                           </div>
                           <div v-if="item.productId">
                             <label class="block text-xs font-medium text-gray-700 mb-1">Product ID</label>
@@ -433,13 +430,28 @@
                       <td class="px-4 py-4">
                         <div>
                           <label class="block text-xs font-medium text-gray-700 mb-1">Price (TZS)</label>
-                          <input v-model.number="item.price" type="number" min="0" step="100" class="w-full px-2 py-1 text-sm border border-gray-300 rounded" placeholder="0">
+                          <input 
+                            v-model.number="item.price" 
+                            @input="onItemChange(index, 'price', $event.target.value)"
+                            type="number" 
+                            min="0" 
+                            step="100" 
+                            class="w-full px-2 py-1 text-sm border border-gray-300 rounded" 
+                            placeholder="0"
+                          >
                         </div>
                       </td>
                       <td class="px-4 py-4">
                         <div>
                           <label class="block text-xs font-medium text-gray-700 mb-1">Quantity</label>
-                          <input v-model.number="item.quantity" type="number" min="1" class="w-full px-2 py-1 text-sm border border-gray-300 rounded" placeholder="1">
+                          <input 
+                            v-model.number="item.quantity" 
+                            @input="onItemChange(index, 'quantity', $event.target.value)"
+                            type="number" 
+                            min="1" 
+                            class="w-full px-2 py-1 text-sm border border-gray-300 rounded" 
+                            placeholder="1"
+                          >
                         </div>
                       </td>
                       <td class="px-4 py-4">
@@ -755,15 +767,29 @@ const viewOrder = (order) => {
   
   console.log('showOrderModal after:', showOrderModal.value);
   console.log('selectedOrder after:', selectedOrder.value);
+  
+  // Force Vue reactivity
+  setTimeout(() => {
+    console.log('Modal should be visible now');
+  }, 100);
 };
 
 const editOrder = (order) => {
+  console.log('editOrder called with:', order);
   selectedOrder.value = order;
   editableOrder.value = { ...order };
+  console.log('editableOrder set to:', editableOrder.value);
   showEditModal.value = true;
+  console.log('showEditModal set to true');
+  
+  // Force Vue reactivity
+  setTimeout(() => {
+    console.log('Edit modal should be visible now');
+  }, 100);
 };
 
 const deleteOrder = (order) => {
+  console.log('deleteOrder called with:', order);
   Swal.fire({
     title: "Delete Order?",
     text: `Order #${order.id} will be removed.`,
@@ -772,12 +798,26 @@ const deleteOrder = (order) => {
     confirmButtonColor: "#dc2626",
   }).then((result) => {
     if (result.isConfirmed) {
-      ordersStore.deleteOrder(order.id);
+      console.log('User confirmed deletion');
+      const deleteResult = ordersStore.deleteOrder(order.id);
+      console.log('deleteOrder result:', deleteResult);
+      
+      // Show success message
+      Swal.fire({
+        icon: 'success',
+        title: 'Order Deleted!',
+        text: `Order #${order.id} has been removed.`,
+        timer: 2000,
+        showConfirmButton: false
+      });
     }
   });
 };
 
 const saveOrderChanges = () => {
+  console.log('saveOrderChanges called');
+  console.log('editableOrder before save:', editableOrder.value);
+  
   // Recalculate order totals based on items
   const subtotal = editableOrder.value.items.reduce((sum, item) => {
     return sum + ((item.price || 0) * (item.quantity || 1));
@@ -801,8 +841,11 @@ const saveOrderChanges = () => {
   editableOrder.value.serviceFee = serviceFee;
   editableOrder.value.total = total;
   
+  console.log('Calling ordersStore.updateOrder with:', editableOrder.value.id, editableOrder.value);
+  
   // Save to orders store
-  ordersStore.updateOrder(editableOrder.value.id, editableOrder.value);
+  const result = ordersStore.updateOrder(editableOrder.value.id, editableOrder.value);
+  console.log('updateOrder result:', result);
   
   showEditModal.value = false;
   
@@ -820,6 +863,7 @@ const saveOrderChanges = () => {
    ORDER ITEM MANAGEMENT
 ------------------------------ */
 const addOrderItem = () => {
+  console.log('addOrderItem called');
   if (!editableOrder.value.items) {
     editableOrder.value.items = [];
   }
@@ -833,12 +877,47 @@ const addOrderItem = () => {
     unit: 'pcs'
   };
   
+  console.log('Adding new item:', newItem);
   editableOrder.value.items.push(newItem);
+  console.log('Items after adding:', editableOrder.value.items);
+  
+  // Force reactivity
+  editableOrder.value.items = [...editableOrder.value.items];
+};
+
+const onItemChange = (index, field, value) => {
+  console.log('onItemChange called:', { index, field, value });
+  
+  if (editableOrder.value.items && editableOrder.value.items[index]) {
+    // Convert value to appropriate type
+    if (field === 'price' || field === 'quantity') {
+      value = parseFloat(value) || 0;
+    } else {
+      value = String(value);
+    }
+    
+    editableOrder.value.items[index][field] = value;
+    console.log('Item updated:', editableOrder.value.items[index]);
+    
+    // Force reactivity
+    editableOrder.value.items = [...editableOrder.value.items];
+  }
 };
 
 const removeOrderItem = (index) => {
+  console.log('removeOrderItem called with index:', index);
+  console.log('Items before removal:', editableOrder.value.items);
+  
   if (editableOrder.value.items && editableOrder.value.items.length > index) {
+    const removedItem = editableOrder.value.items[index];
     editableOrder.value.items.splice(index, 1);
+    console.log('Removed item:', removedItem);
+    console.log('Items after removal:', editableOrder.value.items);
+    
+    // Force reactivity
+    editableOrder.value.items = [...editableOrder.value.items];
+  } else {
+    console.log('Cannot remove item - invalid index or no items');
   }
 };
 

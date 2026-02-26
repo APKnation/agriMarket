@@ -133,16 +133,21 @@ export const useOrdersStore = defineStore('orders', () => {
   }
 
   const updateOrder = (orderId, updates) => {
+    console.log('updateOrder called with:', orderId, updates);
     const index = orders.value.findIndex(order => order.id === orderId)
+    console.log('order index found:', index);
     if (index !== -1) {
       orders.value[index] = {
         ...orders.value[index],
         ...updates,
         updatedAt: new Date().toISOString()
       }
+      console.log('order updated to:', orders.value[index]);
       saveOrders()
+      console.log('orders saved to localStorage');
       return orders.value[index]
     }
+    console.log('order not found');
     return null
   }
 
@@ -171,13 +176,19 @@ export const useOrdersStore = defineStore('orders', () => {
   }
 
   const deleteOrder = (orderId) => {
+    console.log('store deleteOrder called with:', orderId);
     const index = orders.value.findIndex(order => order.id === orderId)
+    console.log('order index for deletion:', index);
     if (index !== -1) {
       const deletedOrder = orders.value[index]
+      console.log('order to delete:', deletedOrder);
       orders.value.splice(index, 1)
+      console.log('orders after deletion:', orders.value.length);
       saveOrders()
+      console.log('orders saved to localStorage');
       return deletedOrder
     }
+    console.log('order not found for deletion');
     return null
   }
 

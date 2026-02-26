@@ -135,6 +135,10 @@ const emit = defineEmits(['view-details', 'add-to-cart', 'toggle-favorite', 'con
 const isFavorite = ref(false)
 
 const getStatusClass = (status) => {
+  if (!status) {
+    return 'bg-green-500/80 text-white' // Default to available
+  }
+  
   const statusClasses = {
     'available': 'bg-green-500/80 text-white',
     'sold': 'bg-red-500/80 text-white',
