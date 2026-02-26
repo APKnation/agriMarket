@@ -202,7 +202,7 @@ onUnmounted(() => { stopAutoPlay() })
 
 <style scoped>
 @media (max-width: 640px) {
-  .min-h-[280px] {
+  .min-h-\[280px\] {
     min-height: 220px;
   }
 }

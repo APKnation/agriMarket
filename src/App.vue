@@ -26,7 +26,7 @@ const showNavigation = computed(() => {
 })
 
 const showFooter = computed(() => {
-  const noFooterRoutes = ['login', 'register']
+  const noFooterRoutes = ['login', 'register', 'analytics', 'orders', 'products', 'crops', 'farmers']
   return !noFooterRoutes.includes(route.name)
 })
 </script>

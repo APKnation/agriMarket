@@ -250,8 +250,8 @@ const showConfirmPassword = ref(false)
 const accountTypes = [
   { value: 'farmer', label: 'Farmer', icon: '👨‍🌾' },
   { value: 'buyer', label: 'Buyer', icon: '🛒' },
-  { value: 'cooperative', label: 'Cooperative', icon: '🤝' },
-  { value: 'admin', label: 'Admin', icon: '👤' }
+  { value: 'cooperative', label: 'Cooperative', icon: '🤝' }
+  // Admin removed - will be created in backend
 ]
 
 const tanzanianRegions = [

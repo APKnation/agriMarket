@@ -1,5 +1,6 @@
 <template>
   <header class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 backdrop-blur-md border-b border-slate-700/50 fixed top-0 left-0 right-0 z-50 shadow-2xl">
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo and Brand -->
@@ -21,8 +22,10 @@
             v-for="item in navigationItems"
             :key="item.name"
             :to="item.to"
+            @click="handleNavigation(item.to)"
             class="flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 backdrop-blur-sm border border-slate-600/30 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20"
             :class="$route.name === item.name ? 'bg-emerald-500/20 text-white border-emerald-400/50' : 'text-slate-300 hover:text-white'"
+            exact-active-class="bg-emerald-500/20 text-white border-emerald-400/50"
           >
             <component :is="item.icon" class="w-4 h-4" />
             <span>{{ item.label }}</span>
@@ -32,10 +35,7 @@
         <!-- User Menu -->
         <div class="flex items-center space-x-4">
           <!-- Notifications -->
-          <button class="relative p-2 text-slate-400 hover:text-emerald-400 transition-all duration-300 rounded-xl hover:bg-slate-700/50">
-            <Bell class="w-5 h-5" />
-            <span class="absolute top-1 right-1 w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-          </button>
+          <OrderNotifications />
 
           <!-- Language Switcher -->
           <button
@@ -109,9 +109,10 @@
           v-for="item in navigationItems"
           :key="item.name"
           :to="item.to"
+          @click="handleMobileNavigation(item.to)"
           class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium w-full transition-all duration-300 backdrop-blur-sm border border-slate-600/30 hover:border-emerald-500/50"
           :class="$route.name === item.name ? 'bg-emerald-500/20 text-white border-emerald-400/50' : 'text-slate-300 hover:text-white'"
-          @click="showMobileMenu = false"
+          exact-active-class="bg-emerald-500/20 text-white border-emerald-400/50"
         >
           <component :is="item.icon" class="w-4 h-4" />
           <span>{{ item.label }}</span>
@@ -123,9 +124,10 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useLanguageStore } from '@/stores/language'
+import OrderNotifications from '@/components/orders/OrderNotifications.vue'
 import {
   Home,
   Users,
@@ -143,6 +145,7 @@ import {
 } from 'lucide-vue-next'
 
 const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
 const languageStore = useLanguageStore()
 
@@ -153,6 +156,29 @@ const userInitials = computed(() => {
   if (!authStore.user?.name) return 'U'
   return authStore.user.name.split(' ').map(n => n[0]).join('').toUpperCase()
 })
+
+const handleNavClick = (item) => {
+  console.log('Navigation clicked:', item);
+  console.log('Current route:', route.name);
+  console.log('Navigating to:', item.to);
+}
+
+const closeMobileMenu = () => {
+  showMobileMenu.value = false
+}
+
+const handleNavigation = (to) => {
+  if (route.path === to) {
+    return // Already on this page
+  }
+  
+  router.push(to)
+}
+
+const handleMobileNavigation = (to) => {
+  closeMobileMenu()
+  handleNavigation(to)
+}
 
 const navigationItems = computed(() => {
   const items = [

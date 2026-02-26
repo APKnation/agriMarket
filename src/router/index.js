@@ -29,7 +29,7 @@ const router = createRouter({
       path: '/farmers',
       name: 'farmers',
       component: () => import('@/views/farmers/FarmerListView.vue'),
-      meta: { requiresAuth: true, roles: ['admin', 'cooperative'] }
+      meta: { requiresAuth: true, roles: ['admin', 'cooperative', 'farmer'] }
     },
     {
       path: '/farmers/:id',
@@ -47,7 +47,7 @@ const router = createRouter({
       path: '/products',
       name: 'products',
       component: () => import('@/views/products/ProductListView.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, roles: ['farmer', 'buyer', 'admin', 'cooperative'] }
     },
     {
       path: '/checkout',
@@ -71,7 +71,7 @@ const router = createRouter({
       path: '/analytics',
       name: 'analytics',
       component: () => import('@/views/analytics/AnalyticsView.vue'),
-      meta: { requiresAuth: true, roles: ['admin', 'cooperative'] }
+      meta: { requiresAuth: true } // Temporarily removed role restriction for testing
     },
     {
       path: '/profile',
@@ -94,7 +94,25 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next('/login')
   } else if (to.meta.roles && !to.meta.roles.includes(authStore.user?.role)) {
-    next('/dashboard')
+    // Allow access to orders page for all authenticated users
+    if (to.path === '/orders' && authStore.isAuthenticated) {
+      next()
+      return
+    }
+    
+    // Redirect based on user role instead of always to dashboard
+    const userRole = authStore.user?.role
+    if (userRole === 'admin') {
+      next('/analytics')  // Admins go to analytics
+    } else if (userRole === 'farmer') {
+      next('/dashboard')  // Farmers go to dashboard
+    } else if (userRole === 'buyer') {
+      next('/products')   // Buyers go to products
+    } else if (userRole === 'cooperative') {
+      next('/farmers')   // Cooperatives go to farmers
+    } else {
+      next('/dashboard')  // Default fallback
+    }
   } else {
     next()
   }

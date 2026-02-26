@@ -1,29 +1,29 @@
 <template>
   <div class="min-h-screen bg-earth-50">
     <!-- Page Header -->
-    <div class="page-header px-6 py-8">
+    <div class="page-header px-4 py-6 md:px-6 md:py-8">
       <div class="max-w-7xl mx-auto">
-        <h1 class="text-3xl font-bold">Checkout</h1>
-        <p class="text-primary-100 mt-2">Complete your order details</p>
+        <h1 class="text-2xl md:text-3xl font-bold">Checkout</h1>
+        <p class="text-primary-100 mt-2 text-sm md:text-base">Complete your order details</p>
       </div>
     </div>
 
-    <div class="max-w-4xl mx-auto px-6 py-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="max-w-4xl mx-auto px-4 py-6 md:px-6 md:py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         <!-- Order Summary -->
         <div class="lg:col-span-2">
-          <div class="card p-6 mb-6">
-            <h2 class="text-xl font-semibold text-gray-900 mb-4">Order Summary</h2>
-            <div class="space-y-4">
-              <div v-for="(item, index) in cart" :key="item.id" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                <img :src="item.image" :alt="item.name" class="w-16 h-16 object-cover rounded-lg" />
-                <div class="flex-1">
-                  <h3 class="font-medium text-gray-900">{{ item.name }}</h3>
-                  <p class="text-sm text-gray-600">{{ item.farmer }}</p>
-                  <p class="text-sm text-gray-600">{{ item.quantity }} {{ item.unit }} × TZS {{ item.price.toLocaleString() }}</p>
+          <div class="card p-4 md:p-6 mb-4 md:mb-6">
+            <h2 class="text-lg md:text-xl font-semibold text-gray-900 mb-3 md:mb-4">Order Summary</h2>
+            <div class="space-y-3 md:space-y-4">
+              <div v-for="(item, index) in cart" :key="item.id" class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 p-3 md:p-4 bg-gray-50 rounded-lg">
+                <img :src="item.image" :alt="item.name" class="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-lg mb-3 sm:mb-0" />
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-medium text-gray-900 text-sm md:text-base truncate">{{ item.name }}</h3>
+                  <p class="text-xs sm:text-sm text-gray-600">{{ item.farmer }}</p>
+                  <p class="text-xs sm:text-sm text-gray-600">{{ item.quantity }} {{ item.unit }} × TZS {{ item.price.toLocaleString() }}</p>
                 </div>
-                <div class="text-right">
-                  <p class="font-semibold text-gray-900">TZS {{ (item.price * item.quantity).toLocaleString() }}</p>
+                <div class="text-right mt-2 sm:mt-0">
+                  <p class="font-semibold text-gray-900 text-sm md:text-base">TZS {{ (item.price * item.quantity).toLocaleString() }}</p>
                 </div>
               </div>
             </div>
@@ -202,6 +202,14 @@
             <button @click="goBack" class="w-full btn-secondary mt-3">
               Back to Shopping
             </button>
+            
+            <!-- Debug Test Button -->
+            <div class="mt-4 p-3 bg-yellow-100 rounded">
+              <p class="text-sm text-gray-700 mb-2">Debug Test:</p>
+              <button @click="testNavigation" class="px-4 py-2 bg-yellow-500 text-white rounded text-sm">
+                Test Navigation to Orders
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -212,9 +220,11 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useOrdersStore } from '@/stores/orders'
 import Swal from 'sweetalert2'
 
 const router = useRouter()
+const ordersStore = useOrdersStore()
 
 // Get cart from localStorage or use empty array
 const cart = ref(JSON.parse(localStorage.getItem('cart') || '[]'))
@@ -359,8 +369,7 @@ const placeOrder = () => {
     return
   }
   
-  const order = {
-    id: Date.now(),
+  const orderData = {
     items: cart.value,
     delivery: deliveryInfo.value,
     payment: paymentMethod.value,
@@ -370,14 +379,18 @@ const placeOrder = () => {
       service: serviceFee.value,
       total: finalTotal.value
     },
-    status: 'pending',
-    date: new Date().toISOString()
+    type: 'Purchase Order',
+    statusHistory: [
+      {
+        status: 'pending',
+        timestamp: new Date().toISOString(),
+        notes: 'Order placed successfully'
+      }
+    ]
   }
   
-  // Save order to localStorage (in real app, this would be API call)
-  const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]')
-  existingOrders.push(order)
-  localStorage.setItem('orders', JSON.stringify(existingOrders))
+  // Use orders store to create order
+  const newOrder = ordersStore.createOrder(orderData)
   
   // Clear cart
   localStorage.removeItem('cart')
@@ -386,7 +399,7 @@ const placeOrder = () => {
   // Show SweetAlert2 success alert
   Swal.fire({
     title: "Order Placed Successfully! 🎉",
-    text: `Order #${order.id} has been placed and will be delivered to ${deliveryInfo.value.city}, ${deliveryInfo.value.region}`,
+    text: `Order #${newOrder.id} has been placed and will be delivered to ${deliveryInfo.value.city}, ${deliveryInfo.value.region}`,
     icon: "success",
     draggable: true,
     showConfirmButton: true,
@@ -399,19 +412,48 @@ const placeOrder = () => {
     allowOutsideClick: false,
     allowEscapeKey: false
   }).then((result) => {
+    console.log('SweetAlert result:', result);
+    console.log('result.isConfirmed:', result.isConfirmed);
+    console.log('result.isDismissed:', result.isDismissed);
+    
     if (result.isConfirmed) {
       // Navigate to orders page
-      router.push('/orders')
+      console.log('Navigating to orders page...');
+      router.push('/orders');
     } else if (result.isDismissed) {
       // Navigate back to products
-      router.push('/products')
+      console.log('Navigating to products page...');
+      router.push('/products');
+    } else {
+      // Fallback - if result is undefined, go to orders
+      console.log('Result undefined, going to orders as fallback');
+      router.push('/orders');
     }
-  })
+  }).catch((error) => {
+    console.error('SweetAlert error:', error);
+    // Fallback navigation
+    router.push('/orders');
+  });
 }
 
 // Go back function
 const goBack = () => {
   router.push('/products')
+}
+
+// Test navigation function
+const testNavigation = () => {
+  console.log('Test navigation clicked');
+  console.log('Router available:', !!router);
+  console.log('Current route:', router.currentRoute?.value?.path);
+  
+  try {
+    console.log('Attempting to navigate to /orders...');
+    router.push('/orders');
+  } catch (error) {
+    console.error('Router navigation error:', error);
+    alert('Navigation error: ' + error.message);
+  }
 }
 
 onMounted(() => {

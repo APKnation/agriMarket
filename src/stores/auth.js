@@ -28,7 +28,9 @@ export const useAuthStore = defineStore('auth', () => {
         '+255713456789': { id: 2, name: 'Sarah Market', phone: '+255713456789', role: 'buyer', location: 'Dar es Salaam, Tanzania' },
         '+255714567890': { id: 3, name: 'Cooperative Manager', phone: '+255714567890', role: 'cooperative', location: 'Morogoro, Tanzania' },
         'admin': { id: 4, name: 'System Admin', phone: 'admin', role: 'admin', location: 'Dodoma, Tanzania' },
-        '+255715678901': { id: 4, name: 'System Admin', phone: '+255715678901', role: 'admin', location: 'Dodoma, Tanzania' }
+        '+255715678901': { id: 4, name: 'System Admin', phone: '+255715678901', role: 'admin', location: 'Dodoma, Tanzania' },
+        'admin@sfmp.temp': { id: 99, name: 'Development Admin', email: 'admin@sfmp.temp', phone: 'admin@sfmp.temp', role: 'admin', location: 'Dar es Salaam, Tanzania' },
+        'admin@sfmp.com': { id: 100, name: 'SFMP Admin', email: 'admin@sfmp.com', phone: 'admin@sfmp.com', role: 'admin', location: 'Dar es Salaam, Tanzania' }
       }
       
       console.log('Available users:', Object.keys(mockUsers))
@@ -37,14 +39,33 @@ export const useAuthStore = defineStore('auth', () => {
       const userData = mockUsers[credentials.phone]
       console.log('Found user:', userData)
       
-      if (userData && credentials.password === 'password') {
-        user.value = userData
+      // Handle temporary admin login with specific password
+      const isAdminLogin = (
+        (credentials.phone === 'admin@sfmp.temp' && credentials.password === 'admin123') ||
+        (credentials.phone === 'admin@sfmp.com' && credentials.password === 'password123') ||
+        (credentials.phone === 'admin' && credentials.password === 'admin123')
+      )
+      
+      if ((userData && credentials.password === 'password') || isAdminLogin) {
+        // Use the correct admin user based on credentials
+        let adminUser = userData
+        if (isAdminLogin) {
+          if (credentials.phone === 'admin@sfmp.com') {
+            adminUser = mockUsers['admin@sfmp.com']
+          } else if (credentials.phone === 'admin@sfmp.temp') {
+            adminUser = mockUsers['admin@sfmp.temp']
+          } else if (credentials.phone === 'admin') {
+            adminUser = mockUsers['admin']
+          }
+        }
+        
+        user.value = adminUser
         token.value = 'mock-jwt-token'
         localStorage.setItem('token', token.value)
-        localStorage.setItem('user', JSON.stringify(userData))
+        localStorage.setItem('user', JSON.stringify(adminUser))
         
         // Return success with role-specific redirect path
-        const redirectPath = getRoleBasedRedirect(userData.role)
+        const redirectPath = getRoleBasedRedirect(adminUser?.role || 'admin')
         console.log('Login successful, redirecting to:', redirectPath)
         return { success: true, redirectPath }
       } else {

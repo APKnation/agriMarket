@@ -1,123 +1,98 @@
 <template>
-  <div class="min-h-screen bg-earth-50">
-    <!-- Page Header -->
-    <div class="page-header px-6 py-8">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="text-3xl font-bold">Order Management</h1>
-        <p class="text-primary-100 mt-2">Track and manage your orders</p>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Professional Header Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="flex justify-between items-center">
+          <div>
+            <h1 class="text-3xl font-bold text-white">Order Management</h1>
+            <p class="text-blue-100 mt-2">Track and manage your orders efficiently</p>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold text-white">SFMP TANZANIA</div>
+            <div class="text-blue-100 text-sm">Smart Farming Marketplace</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-8">
-      <!-- Order Statistics -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Professional Statistics Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="card p-6 bg-yellow-50 border-yellow-200">
+        <div class="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow">
           <div class="flex items-center">
-            <Clock class="w-8 h-8 text-yellow-600 mr-3" />
+            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+              <Clock class="w-6 h-6 text-yellow-600" />
+            </div>
             <div>
-              <p class="text-sm text-yellow-600 font-medium">Pending</p>
-              <p class="text-2xl font-bold text-yellow-900">{{ orderStats.pending }}</p>
+              <p class="text-sm text-yellow-600 font-medium">Pending Orders</p>
+              <p class="text-2xl font-bold text-gray-900">{{ orderStats.pending }}</p>
             </div>
           </div>
         </div>
 
-        <div class="card p-6 bg-blue-50 border-blue-200">
+        <div class="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow">
           <div class="flex items-center">
-            <CheckCircle class="w-8 h-8 text-blue-600 mr-3" />
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+              <CheckCircle class="w-6 h-6 text-blue-600" />
+            </div>
             <div>
-              <p class="text-sm text-blue-600 font-medium">Confirmed</p>
-              <p class="text-2xl font-bold text-blue-900">{{ orderStats.confirmed }}</p>
+              <p class="text-sm text-blue-600 font-medium">Confirmed Orders</p>
+              <p class="text-2xl font-bold text-gray-900">{{ orderStats.confirmed }}</p>
             </div>
           </div>
         </div>
 
-        <div class="card p-6 bg-green-50 border-green-200">
+        <div class="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow">
           <div class="flex items-center">
-            <Truck class="w-8 h-8 text-green-600 mr-3" />
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+              <Truck class="w-6 h-6 text-green-600" />
+            </div>
             <div>
-              <p class="text-sm text-green-600 font-medium">Delivered</p>
-              <p class="text-2xl font-bold text-green-900">{{ orderStats.delivered }}</p>
+              <p class="text-sm text-green-600 font-medium">Delivered Orders</p>
+              <p class="text-2xl font-bold text-gray-900">{{ orderStats.delivered }}</p>
             </div>
           </div>
         </div>
 
-        <div class="card p-6 bg-purple-50 border-purple-200">
+        <div class="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow">
           <div class="flex items-center">
-            <DollarSign class="w-8 h-8 text-purple-600 mr-3" />
+            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+              <DollarSign class="w-6 h-6 text-purple-600" />
+            </div>
             <div>
-              <p class="text-sm text-purple-600 font-medium">Revenue</p>
-              <p class="text-2xl font-bold text-purple-900">TZS {{ orderStats.revenue.toLocaleString() }}</p>
+              <p class="text-sm text-purple-600 font-medium">Total Revenue</p>
+              <p class="text-2xl font-bold text-gray-900">TZS {{ (orderStats.revenue || 0).toLocaleString() }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Delivered Orders Section -->
-      <div v-if="deliveredOrders.length > 0" class="mb-8">
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold text-gray-900">🎉 Recently Delivered Orders</h2>
-          <button 
-            @click="showAllDelivered = !showAllDelivered"
-            class="text-green-600 hover:text-green-800 text-sm font-medium"
-          >
-            {{ showAllDelivered ? 'Show Less' : `View All (${deliveredOrders.length})` }}
-          </button>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div 
-            v-for="(order, index) in displayedDeliveredOrders" 
-            :key="order.id"
-            class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4 hover:shadow-lg transition-shadow"
-          >
-            <div class="flex justify-between items-start mb-3">
-              <div>
-                <h3 class="font-semibold text-green-900">Order #{{ order.id }}</h3>
-                <p class="text-sm text-green-700">{{ new Date(order.date).toLocaleDateString() }}</p>
-              </div>
-              <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
-                Delivered
-              </span>
-            </div>
-            
-            <div class="mb-3">
-              <p class="text-sm font-medium text-gray-900">{{ order.customer.name }}</p>
-              <p class="text-xs text-gray-600">{{ order.customer.location }}</p>
-            </div>
-            
-            <div class="mb-3">
-              <p class="text-xs text-gray-600 mb-1">Items: {{ order.items.length }}</p>
-              <div class="text-xs text-gray-700">
-                {{ order.items.slice(0, 2).map(item => item.name).join(', ') }}
-                <span v-if="order.items.length > 2">+{{ order.items.length - 2 }} more</span>
-              </div>
-            </div>
-            
-            <div class="flex justify-between items-center pt-3 border-t border-green-200">
-              <div>
-                <p class="text-lg font-bold text-green-900">TZS {{ order.total.toLocaleString() }}</p>
-              </div>
-              <div class="flex space-x-2">
-                <button 
-                  @click="viewOrder(order)"
-                  class="text-green-600 hover:text-green-800 text-sm font-medium"
-                >
-                  View
-                </button>
-                <button 
-                  @click="downloadInvoice(order)"
-                  class="text-gray-600 hover:text-gray-800 text-sm font-medium"
-                >
-                  PDF
-                </button>
-              </div>
-            </div>
+      <!-- Connection Status Indicator -->
+      <div class="bg-white rounded-lg shadow p-4 mb-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <component 
+              :is="isConnected ? Wifi : WifiOff" 
+              :class="getConnectionColor()"
+              class="w-5 h-5 mr-2"
+            />
+            <span :class="getConnectionColor()" class="text-sm font-medium">
+              {{ getConnectionText() }}
+            </span>
+            <span v-if="isConnected" class="ml-2 text-xs text-gray-500">
+              Real-time updates active
+            </span>
+          </div>
+          <div v-if="isConnected" class="flex items-center space-x-4 text-xs text-gray-600">
+            <span>{{ liveMetrics.totalOrders }} total orders</span>
+            <span>TZS {{ (liveMetrics.todayRevenue || 0).toLocaleString() }} today</span>
           </div>
         </div>
       </div>
 
       <!-- Filters -->
-      <div class="card p-6 mb-6">
+      <div class="bg-white rounded-lg shadow p-6 mb-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Search Orders</label>
@@ -127,14 +102,14 @@
                 v-model="searchQuery"
                 type="text"
                 placeholder="Search by order ID or customer..."
-                class="input-field pl-10"
+                class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
             </div>
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-            <select v-model="statusFilter" class="input-field">
+            <select v-model="statusFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
               <option value="">All Status</option>
               <option value="pending">Pending</option>
               <option value="confirmed">Confirmed</option>
@@ -147,7 +122,7 @@
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
-            <select v-model="dateFilter" class="input-field">
+            <select v-model="dateFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
               <option value="">All Time</option>
               <option value="today">Today</option>
               <option value="week">This Week</option>
@@ -158,7 +133,7 @@
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Order Type</label>
-            <select v-model="typeFilter" class="input-field">
+            <select v-model="typeFilter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
               <option value="">All Types</option>
               <option value="purchase">Purchase Orders</option>
               <option value="sale">Sale Orders</option>
@@ -168,150 +143,84 @@
       </div>
 
       <!-- Orders Table -->
-      <div class="relative overflow-x-auto bg-white shadow-xs rounded-lg border border-gray-200">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-700">
-          <thead class="text-sm text-gray-700 bg-gray-50 border-b border-gray-300">
-            <tr>
-              <th scope="col" class="p-4">
-                <div class="flex items-center">
-                  <input id="table-checkbox-all" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-2 focus:ring-green-500 focus:ring-green-500">
-                  <label for="table-checkbox-all" class="sr-only">Table checkbox</label>
-                </div>
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Order ID
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Customer
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Products
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Total
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Date
-              </th>
-              <th scope="col" class="px-6 py-3 font-medium">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr 
-              v-for="order in filteredOrders"
-              :key="order.id"
-              class="bg-white border-b border-gray-200 hover:bg-gray-50"
-            >
-              <td class="w-4 p-4">
-                <div class="flex items-center">
-                  <input :id="`table-checkbox-${order.id}`" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-2 focus:ring-green-500 focus:ring-green-500">
-                  <label :for="`table-checkbox-${order.id}`" class="sr-only">Table checkbox</label>
-                </div>
-              </td>
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                <div class="flex flex-col">
-                  <span class="font-semibold">#{{ order.id }}</span>
-                  <span class="text-xs text-gray-500">{{ order.type || 'Purchase Order' }}</span>
-                </div>
-              </th>
-              <td class="px-6 py-4">
-                <div class="flex items-center">
-                  <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                    <span class="text-xs font-medium text-green-800">{{ getInitials(order.customer.name) }}</span>
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Products</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr v-for="order in filteredOrders" :key="order.id" class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm font-medium text-gray-900">#{{ order.id }}</div>
+                  <div class="text-xs text-gray-500">{{ order.type || 'Purchase Order' }}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center mr-3">
+                      <span class="text-xs font-medium text-emerald-800">{{ getInitials(order.customer.name) }}</span>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-gray-900">{{ order.customer.name }}</div>
+                      <div class="text-xs text-gray-500">{{ order.customer.email }}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div class="text-sm font-medium text-gray-900">{{ order.customer.name }}</div>
-                    <div class="text-xs text-gray-500">{{ order.customer.email }}</div>
-                    <div class="text-xs text-gray-400">{{ order.customer.phone }}</div>
-                  </div>
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <div class="text-sm text-gray-900">
-                  {{ order.items.length }} items
-                </div>
-                <div class="text-xs text-gray-500">
-                  {{ order.items.map(item => item.name).join(', ').substring(0, 30) }}...
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <div class="text-sm font-semibold text-gray-900">
-                  TZS {{ order.total.toLocaleString() }}
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  :class="{
-                    'px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full': true,
-                    'bg-yellow-100 text-yellow-800': order.status === 'pending',
-                    'bg-blue-100 text-blue-800': order.status === 'confirmed',
-                    'bg-purple-100 text-purple-800': order.status === 'shipped',
-                    'bg-green-100 text-green-800': order.status === 'delivered'
-                  }"
-                >
-                  {{ order.status }}
-                </span>
-              </td>
-              <td class="px-6 py-4">
-                <div class="text-sm text-gray-900">
-                  {{ new Date(order.date).toLocaleDateString() }}
-                </div>
-                <div class="text-xs text-gray-500">
-                  {{ new Date(order.date).toLocaleTimeString() }}
-                </div>
-              </td>
-              <td class="flex items-center px-6 py-4 space-x-2">
-                <button 
-                  @click="viewOrder(order)"
-                  class="font-medium text-green-600 hover:text-green-800 hover:underline"
-                >
-                  View
-                </button>
-                <button 
-                  @click="editOrder(order)"
-                  class="font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  Edit
-                </button>
-                <button 
-                  @click="downloadInvoice(order)"
-                  class="font-medium text-gray-600 hover:text-gray-800 hover:underline"
-                >
-                  PDF
-                </button>
-                <button 
-                  @click="deleteOrder(order)"
-                  class="font-medium text-red-600 hover:text-red-800 hover:underline"
-                >
-                  Remove
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">{{ order.items?.length || 0 }} items</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm font-semibold text-gray-900">TZS {{ (order.totals?.total || order.total || 0).toLocaleString() }}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span :class="getStatusColor(order.status)" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full">
+                    {{ order.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ formatDate(order.date) }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                  <button @click="viewOrder(order)" class="text-emerald-600 hover:text-emerald-900">View</button>
+                  <button @click="editOrder(order)" class="text-blue-600 hover:text-blue-900">Edit</button>
+                  <button @click="downloadInvoice(order)" class="text-gray-600 hover:text-gray-900">PDF</button>
+                  <button @click="deleteOrder(order)" class="text-red-600 hover:text-red-900">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Order Details Modal -->
-      <div
-        v-if="showOrderModal"
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
-      >
-        <div class="relative top-10 mx-auto p-5 border max-w-4xl shadow-lg rounded-lg bg-white">
+      <div v-if="showOrderModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <!-- Debug info -->
+        <div class="fixed top-4 left-4 bg-red-500 text-white p-2 rounded z-50">
+          DEBUG: Modal should be visible! showOrderModal: {{ showOrderModal }}
+        </div>
+        
+        <div class="relative top-20 mx-auto p-5 border w-11/12 max-w-4xl shadow-lg rounded-lg bg-white">
           <div v-if="selectedOrder" class="mt-3">
+            <!-- Debug info -->
+            <div class="bg-yellow-100 p-2 mb-4 rounded">
+              DEBUG: Order ID: {{ selectedOrder.id }}, Customer: {{ selectedOrder.customer?.name }}
+            </div>
+            
             <div class="flex justify-between items-start mb-6">
               <div>
                 <h3 class="text-xl font-bold text-gray-900">Order #{{ selectedOrder.id }}</h3>
                 <p class="text-gray-600">{{ selectedOrder.type }} - {{ formatDate(selectedOrder.date) }}</p>
               </div>
-              <button
-                @click="showOrderModal = false"
-                class="text-gray-400 hover:text-gray-600"
-              >
+              <button @click="showOrderModal = false" class="text-gray-400 hover:text-gray-600">
                 <X class="w-6 h-6" />
               </button>
             </div>
@@ -325,96 +234,25 @@
                     <p class="font-medium">{{ selectedOrder.customer.name }}</p>
                     <p class="text-sm text-gray-600">{{ selectedOrder.customer.email }}</p>
                     <p class="text-sm text-gray-600">{{ selectedOrder.customer.phone }}</p>
-                    <p class="text-sm text-gray-600">{{ selectedOrder.customer.location }}</p>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 class="font-semibold text-gray-900 mb-2">Delivery Information</h4>
-                  <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm">{{ selectedOrder.delivery.address }}</p>
-                    <p class="text-sm text-gray-600 mt-1">
-                      {{ selectedOrder.delivery.method }} - {{ selectedOrder.delivery.timeline }}
-                    </p>
                   </div>
                 </div>
               </div>
 
-              <!-- Order Items -->
+              <!-- Order Summary -->
               <div>
-                <div class="flex justify-between items-center mb-2">
-                  <h4 class="font-semibold text-gray-900">Order Items</h4>
-                  <span class="text-xs text-gray-500">Edit quantities or remove items</span>
-                </div>
-                <div class="space-y-3">
-                  <div
-                    v-for="(item, index) in editableOrder.items"
-                    :key="item.id"
-                    class="p-3 bg-gray-50 rounded-lg border border-gray-200"
-                  >
-                    <div class="flex justify-between items-start mb-2">
-                      <div class="flex-1">
-                        <p class="font-medium text-gray-900">{{ item.name }}</p>
-                        <p class="text-sm text-gray-600">Unit Price: TZS {{ item.price.toLocaleString() }}</p>
-                      </div>
-                      <button 
-                        @click="removeItem(index)"
-                        class="text-red-600 hover:text-red-800 text-sm font-medium"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                      <label class="text-sm text-gray-600">Quantity:</label>
-                      <div class="flex items-center space-x-2">
-                        <button 
-                          @click="decreaseQuantity(index)"
-                          class="w-8 h-8 bg-white border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-100"
-                          :disabled="item.quantity <= 1"
-                        >
-                          <span class="text-gray-600">-</span>
-                        </button>
-                        <input 
-                          v-model.number="item.quantity" 
-                          type="number" 
-                          min="1" 
-                          class="w-16 px-2 py-1 border border-gray-300 rounded-md text-center"
-                          @change="recalculateTotals()"
-                        />
-                        <button 
-                          @click="increaseQuantity(index)"
-                          class="w-8 h-8 bg-white border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-100"
-                        >
-                          <span class="text-gray-600">+</span>
-                        </button>
-                        <span class="text-sm text-gray-600">{{ item.unit }}</span>
-                      </div>
-                      <div class="ml-auto">
-                        <p class="font-medium text-gray-900">
-                          TZS {{ (item.quantity * item.price).toLocaleString() }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Order Summary -->
-                <div class="mt-4 pt-4 border-t">
+                <h4 class="font-semibold text-gray-900 mb-2">Order Summary</h4>
+                <div class="bg-gray-50 p-4 rounded-lg">
                   <div class="flex justify-between mb-2">
                     <span class="text-gray-600">Subtotal:</span>
-                    <span>TZS {{ editableOrder.subtotal.toLocaleString() }}</span>
+                    <span>TZS {{ (selectedOrder.totals?.subtotal || selectedOrder.subtotal || 0).toLocaleString() }}</span>
                   </div>
                   <div class="flex justify-between mb-2">
                     <span class="text-gray-600">Delivery Fee:</span>
-                    <span>TZS {{ editableOrder.deliveryFee.toLocaleString() }}</span>
-                  </div>
-                  <div class="flex justify-between mb-2">
-                    <span class="text-gray-600">Service Fee (2%):</span>
-                    <span>TZS {{ editableOrder.serviceFee?.toLocaleString() || 0 }}</span>
+                    <span>TZS {{ (selectedOrder.totals?.delivery || selectedOrder.deliveryFee || 0).toLocaleString() }}</span>
                   </div>
                   <div class="flex justify-between font-bold text-lg">
                     <span>Total:</span>
-                    <span>TZS {{ editableOrder.total.toLocaleString() }}</span>
+                    <span>TZS {{ (selectedOrder.totals?.total || selectedOrder.total || 0).toLocaleString() }}</span>
                   </div>
                 </div>
               </div>
@@ -425,10 +263,7 @@
               <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-3">
                   <label class="text-sm font-medium text-gray-700">Order Status:</label>
-                  <select 
-                    v-model="editableOrder.status" 
-                    class="px-3 py-1 text-sm font-medium border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                  >
+                  <select v-model="editableOrder.status" class="px-3 py-1 text-sm font-medium border border-gray-300 rounded-md">
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
                     <option value="processing">Processing</option>
@@ -436,32 +271,12 @@
                     <option value="delivered">Delivered</option>
                     <option value="cancelled">Cancelled</option>
                   </select>
-                  <span
-                    class="px-3 py-1 text-sm font-semibold rounded-full"
-                    :class="getStatusColor(editableOrder.status)"
-                  >
-                    {{ editableOrder.status }}
-                  </span>
                 </div>
                 <div class="flex space-x-3">
-                  <button
-                    @click="saveOrderChanges"
-                    class="btn-primary"
-                  >
+                  <button @click="saveOrderChanges" class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700">
                     Save Changes
                   </button>
-                  <button
-                    v-if="canUpdateStatus(selectedOrder)"
-                    @click="updateOrderStatus(selectedOrder)"
-                    class="btn-secondary"
-                  >
-                    Update Status
-                  </button>
-                  <button
-                    @click="downloadInvoice(selectedOrder)"
-                    class="btn-secondary"
-                  >
-                    <Download class="w-4 h-4 mr-2" />
+                  <button @click="downloadInvoice(selectedOrder)" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
                     Download Invoice
                   </button>
                 </div>
@@ -472,17 +287,14 @@
       </div>
 
       <!-- Status Update Modal -->
-      <div
-        v-if="showStatusModal"
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
-      >
+      <div v-if="showStatusModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-lg bg-white">
           <div class="mt-3">
             <h3 class="text-lg font-medium text-gray-900 mb-4">Update Order Status</h3>
             <form @submit.prevent="saveStatusUpdate" class="space-y-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">New Status</label>
-                <select v-model="newStatus" required class="input-field">
+                <select v-model="newStatus" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
                   <option value="">Select status</option>
                   <option value="pending">Pending</option>
                   <option value="confirmed">Confirmed</option>
@@ -494,24 +306,212 @@
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
-                <textarea
-                  v-model="statusNotes"
-                  rows="3"
-                  class="input-field"
-                  placeholder="Add any notes about this status update..."
-                ></textarea>
+                <textarea v-model="statusNotes" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Add any notes about this status update..."></textarea>
               </div>
               <div class="flex justify-end space-x-3 pt-4">
-                <button
-                  type="button"
-                  @click="showStatusModal = false"
-                  class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
-                >
+                <button type="button" @click="showStatusModal = false" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">
                   Cancel
                 </button>
-                <button type="submit" class="btn-primary">Update Status</button>
+                <button type="submit" class="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">Update Status</button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Edit Modal -->
+      <div v-if="showEditModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-10 mx-auto p-5 border w-11/12 max-w-7xl shadow-lg rounded-lg bg-white max-h-screen overflow-y-auto">
+          <div v-if="editableOrder" class="mt-3">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">Edit Order #{{ editableOrder.id }}</h3>
+                <p class="text-gray-600">{{ editableOrder.type }} - {{ formatDate(editableOrder.date) }}</p>
+              </div>
+              <div class="flex items-center space-x-3">
+                <button @click="saveOrderChanges" class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700">
+                  Save Changes
+                </button>
+                <button @click="showEditModal = false" class="text-gray-400 hover:text-gray-600">
+                  <X class="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Order Header Information -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <!-- Customer Information -->
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Customer Information</h4>
+                  <div class="bg-gray-50 p-4 rounded-lg space-y-2">
+                    <div>
+                      <label class="block text-xs font-medium text-gray-700">Name</label>
+                      <input v-model="editableOrder.customer.name" type="text" class="w-full px-2 py-1 text-sm border border-gray-300 rounded">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-medium text-gray-700">Email</label>
+                      <input v-model="editableOrder.customer.email" type="email" class="w-full px-2 py-1 text-sm border border-gray-300 rounded">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-medium text-gray-700">Phone</label>
+                      <input v-model="editableOrder.customer.phone" type="tel" class="w-full px-2 py-1 text-sm border border-gray-300 rounded">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order Status -->
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-semibold text-gray-900 mb-2">Order Status</h4>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <select v-model="editableOrder.status" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md">
+                      <option value="pending">Pending</option>
+                      <option value="confirmed">Confirmed</option>
+                      <option value="processing">Processing</option>
+                      <option value="shipped">Shipped</option>
+                      <option value="delivered">Delivered</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order Summary -->
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-2">Order Summary</h4>
+                <div class="bg-gray-50 p-4 rounded-lg space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Items:</span>
+                    <span class="text-sm font-medium">{{ editableOrder.items?.length || 0 }}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Subtotal:</span>
+                    <span class="text-sm font-medium">TZS {{ (editableOrder.totals?.subtotal || editableOrder.subtotal || 0).toLocaleString() }}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Delivery:</span>
+                    <span class="text-sm font-medium">TZS {{ (editableOrder.totals?.delivery || editableOrder.deliveryFee || 0).toLocaleString() }}</span>
+                  </div>
+                  <div class="flex justify-between font-bold text-lg border-t pt-2">
+                    <span>Total:</span>
+                    <span>TZS {{ (editableOrder.totals?.total || editableOrder.total || 0).toLocaleString() }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Items Table -->
+            <div class="mb-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Order Items</h4>
+              <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <table class="w-full">
+                  <thead class="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Price</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr v-for="(item, index) in editableOrder.items" :key="index" class="hover:bg-gray-50">
+                      <td class="px-4 py-4">
+                        <div class="space-y-2">
+                          <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Product Name</label>
+                            <input v-model="item.name" type="text" class="w-full px-2 py-1 text-sm border border-gray-300 rounded" placeholder="Product name">
+                          </div>
+                          <div v-if="item.productId">
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Product ID</label>
+                            <span class="text-xs text-gray-500">#{{ item.productId }}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-4">
+                        <div>
+                          <label class="block text-xs font-medium text-gray-700 mb-1">Price (TZS)</label>
+                          <input v-model.number="item.price" type="number" min="0" step="100" class="w-full px-2 py-1 text-sm border border-gray-300 rounded" placeholder="0">
+                        </div>
+                      </td>
+                      <td class="px-4 py-4">
+                        <div>
+                          <label class="block text-xs font-medium text-gray-700 mb-1">Quantity</label>
+                          <input v-model.number="item.quantity" type="number" min="1" class="w-full px-2 py-1 text-sm border border-gray-300 rounded" placeholder="1">
+                        </div>
+                      </td>
+                      <td class="px-4 py-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          TZS {{ ((item.price || 0) * (item.quantity || 1)).toLocaleString() }}
+                        </div>
+                      </td>
+                      <td class="px-4 py-4">
+                        <button @click="removeOrderItem(index)" class="text-red-600 hover:text-red-900 text-sm">
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Add new item row -->
+                    <tr class="bg-gray-50">
+                      <td colspan="5" class="px-4 py-4">
+                        <button @click="addOrderItem" class="w-full px-4 py-2 bg-emerald-600 text-white text-sm rounded-md hover:bg-emerald-700">
+                          + Add New Item
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Delivery Information -->
+            <div class="mb-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Delivery Information</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Address</label>
+                  <textarea v-model="editableOrder.delivery.address" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Enter delivery address"></textarea>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                    <input v-model="editableOrder.delivery.city" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="City">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Region</label>
+                    <input v-model="editableOrder.delivery.region" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Region">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Information -->
+            <div class="mb-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Payment Information</h4>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Payment Method</label>
+                    <select v-model="editableOrder.payment" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                      <option value="cash_on_delivery">Cash on Delivery</option>
+                      <option value="mobile_money">Mobile Money</option>
+                      <option value="bank_transfer">Bank Transfer</option>
+                      <option value="card">Card Payment</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Payment Status</label>
+                    <select v-model="editableOrder.paymentStatus" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                      <option value="pending">Pending</option>
+                      <option value="paid">Paid</option>
+                      <option value="failed">Failed</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -520,488 +520,630 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useAuthStore } from '@/stores/auth'
-import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas'
-import Swal from 'sweetalert2'
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import { useAuthStore } from "@/stores/auth";
+import { useProductsStore } from "@/stores/products";
+import { useOrdersStore } from "@/stores/orders";
+import { useWebSocket } from "@/services/websocket";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import Swal from "sweetalert2";
 import {
   Clock,
   CheckCircle,
   Truck,
   DollarSign,
   Search,
-  Eye,
-  Edit,
   Download,
-  X
-} from 'lucide-vue-next'
+  X,
+  Wifi,
+  WifiOff,
+} from "lucide-vue-next";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
+const productsStore = useProductsStore();
+const ordersStore = useOrdersStore();
 
-const searchQuery = ref('')
-const statusFilter = ref('')
-const dateFilter = ref('')
-const typeFilter = ref('')
+// WebSocket service
+const { 
+  isConnected, 
+  connectionStatus, 
+  connect, 
+  disconnect, 
+  realTimeOrders, 
+  liveMetrics,
+  getConnectionColor,
+  getConnectionText 
+} = useWebSocket();
 
-const showOrderModal = ref(false)
-const showStatusModal = ref(false)
-const selectedOrder = ref(null)
-const editableOrder = ref(null)
-const showAllDelivered = ref(false)
-const newStatus = ref('')
-const statusNotes = ref('')
+/* -----------------------------
+   REACTIVE STATE
+------------------------------ */
+// Use orders store but also keep local reactive reference for compatibility
+const searchQuery = ref("");
+const statusFilter = ref("");
+const dateFilter = ref("");
+const typeFilter = ref("");
 
-// Orders from localStorage
-const orders = ref([])
+const showOrderModal = ref(false);
+const showStatusModal = ref(false);
+const showEditModal = ref(false);
+const selectedOrder = ref(null);
+const editableOrder = ref(null);
+const showAllDelivered = ref(false);
+const newStatus = ref("");
+const statusNotes = ref("");
 
-// Load orders from localStorage on component mount
+// Create a local reactive reference to store orders
+const orders = computed(() => ordersStore.orders);
+
+/* -----------------------------
+   LOAD ORDERS
+------------------------------ */
+// Use orders store loadOrders function
 const loadOrders = () => {
-  const savedOrders = localStorage.getItem('orders')
-  if (savedOrders) {
-    orders.value = JSON.parse(savedOrders).map(order => {
-      const subtotal = order.totals?.subtotal || 0
-      const deliveryFee = order.totals?.delivery || order.deliveryFee || 2000 // Prioritize totals.delivery
-      const serviceFee = order.totals?.service || Math.round(subtotal * 0.02)
-      const total = order.totals?.total || (subtotal + deliveryFee + serviceFee)
-      
-      return {
-        ...order,
-        customer: {
-          name: order.delivery?.name || 'Guest User',
-          email: order.delivery?.email || 'guest@example.com',
-          phone: order.delivery?.phone || '+255 XXX XXX XXX',
-          location: `${order.delivery?.city || 'Unknown'}, ${order.delivery?.region || 'Tanzania'}`
-        },
-        subtotal: subtotal,
-        deliveryFee: deliveryFee,
-        serviceFee: serviceFee,
-        total: total,
-        delivery: {
-          address: order.delivery?.address || 'Unknown Address',
-          method: order.payment || 'Standard Delivery',
-          timeline: '2-3 business days'
-        }
-      }
-    })
-  }
-}
+  console.log('Loading orders from store...');
+  ordersStore.loadOrders();
+  console.log('Orders loaded:', ordersStore.orders.length);
+  console.log('Order stats:', ordersStore.orderStats);
+};
 
 onMounted(() => {
-  loadOrders()
-})
+  console.log('OrderManagementView mounted');
+  console.log('Orders store:', ordersStore);
+  console.log('Orders store orders:', ordersStore.orders);
+  console.log('Orders store orderStats:', ordersStore.orderStats);
+  loadOrders();
+  connect(); // Connect to WebSocket for real-time updates
+});
 
-const orderStats = computed(() => ({
-  pending: orders.value.filter(o => o.status === 'pending').length,
-  confirmed: orders.value.filter(o => o.status === 'confirmed').length,
-  delivered: orders.value.filter(o => o.status === 'delivered').length,
-  revenue: orders.value.filter(o => o.status === 'delivered').reduce((sum, o) => sum + o.total, 0)
-}))
+onUnmounted(() => {
+  disconnect(); // Disconnect WebSocket when component unmounts
+});
 
+/* -----------------------------
+   ORDER STATS (Enhanced with Real-time Data)
+------------------------------ */
+const orderStats = computed(() => {
+  // Use live metrics if WebSocket is connected, otherwise use store data
+  if (isConnected.value && liveMetrics.totalOrders > 0) {
+    console.log('Using live metrics for order stats');
+    return {
+      pending: liveMetrics.pendingOrders,
+      confirmed: liveMetrics.confirmedOrders,
+      delivered: liveMetrics.deliveredOrders,
+      revenue: liveMetrics.todayRevenue,
+      totalOrders: liveMetrics.totalOrders
+    };
+  }
+  
+  // Fallback to store data - access the computed property directly
+  console.log('Using store data for order stats');
+  try {
+    const stats = ordersStore.orderStats;
+    console.log('Store order stats:', stats);
+    // Ensure we have a valid stats object
+    return stats || {
+      pending: 0,
+      confirmed: 0,
+      delivered: 0,
+      revenue: 0,
+      totalOrders: 0
+    };
+  } catch (error) {
+    console.error('Error accessing orderStats:', error);
+    return {
+      pending: 0,
+      confirmed: 0,
+      delivered: 0,
+      revenue: 0,
+      totalOrders: 0
+    };
+  }
+});
+
+/* -----------------------------
+   FILTERED ORDERS (Enhanced with Real-time Data)
+------------------------------ */
 const filteredOrders = computed(() => {
-  let filtered = orders.value
+  try {
+    // Use local computed orders reference
+    let allOrders = [...orders.value];
+    console.log('Store orders count:', orders.value.length);
+    
+    // Add real-time orders if they're not already in local orders
+    if (isConnected.value && realTimeOrders.value.length > 0) {
+      realTimeOrders.value.forEach(rtOrder => {
+        if (!allOrders.find(order => order.id === rtOrder.id)) {
+          allOrders.unshift(rtOrder); // Add new orders at the top
+        }
+      });
+    }
+    
+    console.log('All orders count:', allOrders.length);
+    console.log('Real-time orders count:', realTimeOrders.value.length);
+    console.log('Is connected:', isConnected.value);
+    
+    let filtered = [...allOrders];
 
-  // Search filter
-  if (searchQuery.value) {
-    filtered = filtered.filter(order =>
-      order.id.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      order.customer.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    )
+    if (searchQuery.value) {
+      filtered = filtered.filter(
+        (order) =>
+          String(order.id)
+            .toLowerCase()
+            .includes(searchQuery.value.toLowerCase()) ||
+          order.customer?.name
+            .toLowerCase()
+            .includes(searchQuery.value.toLowerCase()),
+      );
+    }
+
+    if (statusFilter.value) {
+      filtered = filtered.filter((order) => order.status === statusFilter.value);
+    }
+
+    if (typeFilter.value) {
+      filtered = filtered.filter((order) =>
+        (order.type || "").toLowerCase().includes(typeFilter.value),
+      );
+    }
+
+    console.log('Filtered orders count:', filtered.length);
+    return filtered;
+  } catch (error) {
+    console.error('Error in filteredOrders:', error);
+    return [];
   }
+});
 
-  // Status filter
-  if (statusFilter.value) {
-    filtered = filtered.filter(order => order.status === statusFilter.value)
-  }
-
-  // Type filter
-  if (typeFilter.value) {
-    filtered = filtered.filter(order => order.type.toLowerCase().includes(typeFilter.value))
-  }
-
-  return filtered
-})
-
-const getInitials = (name) => {
-  return name.split(' ').map(n => n[0]).join('').toUpperCase()
-}
-
-const getStatusColor = (status) => {
-  switch (status) {
-    case 'pending': return 'bg-yellow-100 text-yellow-800'
-    case 'confirmed': return 'bg-blue-100 text-blue-800'
-    case 'processing': return 'bg-purple-100 text-purple-800'
-    case 'shipped': return 'bg-indigo-100 text-indigo-800'
-    case 'delivered': return 'bg-green-100 text-green-800'
-    case 'cancelled': return 'bg-red-100 text-red-800'
-    default: return 'bg-gray-100 text-gray-800'
-  }
-}
-
-const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString()
-}
-
-const canUpdateStatus = (order) => {
-  // Logic to determine if user can update status
-  return authStore.isAdmin || authStore.isCooperative || (authStore.isFarmer && order.type === 'Sale Order')
-}
-
-// Computed properties for delivered orders
+/* -----------------------------
+   DELIVERED ORDERS
+------------------------------ */
 const deliveredOrders = computed(() => {
-  return orders.value
-    .filter(order => order.status === 'delivered')
-    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Most recent first
-})
+  try {
+    return orders.value
+      .filter((o) => o.status === "delivered")
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  } catch (error) {
+    console.error('Error in deliveredOrders:', error);
+    return [];
+  }
+});
 
 const displayedDeliveredOrders = computed(() => {
-  if (showAllDelivered.value) {
-    return deliveredOrders.value
-  } else {
-    return deliveredOrders.value.slice(0, 6) // Show only first 6 by default
-  }
-})
+  return showAllDelivered.value
+    ? deliveredOrders.value
+    : deliveredOrders.value.slice(0, 6);
+});
 
+/* -----------------------------
+   HELPERS
+------------------------------ */
+const getInitials = (name) => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+};
+
+const getStatusColor = (status) => {
+  const colors = {
+    pending: "bg-yellow-100 text-yellow-800",
+    confirmed: "bg-blue-100 text-blue-800",
+    processing: "bg-purple-100 text-purple-800",
+    shipped: "bg-indigo-100 text-indigo-800",
+    delivered: "bg-green-100 text-green-800",
+    cancelled: "bg-red-100 text-red-800",
+  };
+  return colors[status] || "bg-gray-100 text-gray-800";
+};
+
+const formatDate = (date) => new Date(date).toLocaleDateString();
+
+/* -----------------------------
+   ORDER ACTIONS
+------------------------------ */
 const viewOrder = (order) => {
-  selectedOrder.value = order
-  showOrderModal.value = true
-}
-
-const updateOrderStatus = (order) => {
-  selectedOrder.value = order
-  newStatus.value = order.status
-  statusNotes.value = ''
-  showOrderModal.value = false
-  showStatusModal.value = true
-}
+  console.log('View order clicked:', order);
+  console.log('showOrderModal before:', showOrderModal.value);
+  console.log('selectedOrder before:', selectedOrder.value);
+  
+  selectedOrder.value = order;
+  editableOrder.value = JSON.parse(JSON.stringify(order));
+  showOrderModal.value = true;
+  
+  console.log('showOrderModal after:', showOrderModal.value);
+  console.log('selectedOrder after:', selectedOrder.value);
+};
 
 const editOrder = (order) => {
-  selectedOrder.value = { ...order }
-  editableOrder.value = {
-    ...order,
-    items: order.items.map(item => ({ ...item }))
-  }
-  showOrderModal.value = true
-}
-
-// Item editing functions
-const removeItem = (index) => {
-  Swal.fire({
-    title: "Remove Item?",
-    text: `Are you sure you want to remove ${editableOrder.value.items[index].name} from this order?`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#dc2626",
-    cancelButtonColor: "#6b7280",
-    confirmButtonText: "Yes, Remove",
-    cancelButtonText: "Cancel"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      editableOrder.value.items.splice(index, 1)
-      recalculateTotals()
-      
-      if (editableOrder.value.items.length === 0) {
-        Swal.fire({
-          title: "Order Empty",
-          text: "This order now has no items. The order will be deleted.",
-          icon: "info",
-          confirmButtonColor: "#10b981"
-        }).then(() => {
-          deleteOrder(selectedOrder.value)
-        })
-      }
-    }
-  })
-}
-
-const increaseQuantity = (index) => {
-  editableOrder.value.items[index].quantity += 1
-  recalculateTotals()
-}
-
-const decreaseQuantity = (index) => {
-  if (editableOrder.value.items[index].quantity > 1) {
-    editableOrder.value.items[index].quantity -= 1
-    recalculateTotals()
-  }
-}
-
-const recalculateTotals = () => {
-  const subtotal = editableOrder.value.items.reduce((total, item) => {
-    return total + (item.price * item.quantity)
-  }, 0)
-  
-  // Free delivery for orders over 10,000 TZS
-  const deliveryFee = subtotal > 10000 ? 0 : 2000
-  const serviceFee = Math.round(subtotal * 0.02) // 2% service fee
-  
-  editableOrder.value.subtotal = subtotal
-  editableOrder.value.deliveryFee = deliveryFee
-  editableOrder.value.serviceFee = serviceFee
-  editableOrder.value.total = subtotal + deliveryFee + serviceFee
-  
-  console.log('Order totals recalculated:', {
-    subtotal: subtotal,
-    deliveryFee: deliveryFee,
-    serviceFee: serviceFee,
-    total: editableOrder.value.total
-  })
-}
-
-const saveOrderChanges = () => {
-  // Update the original order with edited data
-  const orderIndex = orders.value.findIndex(o => o.id === selectedOrder.value.id)
-  if (orderIndex !== -1) {
-    const updatedOrder = {
-      ...editableOrder.value,
-      totals: {
-        subtotal: editableOrder.value.subtotal,
-        delivery: editableOrder.value.deliveryFee,
-        service: editableOrder.value.serviceFee,
-        total: editableOrder.value.total
-      }
-    }
-    
-    orders.value[orderIndex] = updatedOrder
-    
-    // Update localStorage
-    const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]')
-    const localStorageIndex = existingOrders.findIndex(o => o.id === selectedOrder.value.id)
-    if (localStorageIndex !== -1) {
-      existingOrders[localStorageIndex] = updatedOrder
-      localStorage.setItem('orders', JSON.stringify(existingOrders))
-    }
-    
-    Swal.fire({
-      title: "Order Updated!",
-      text: `Order #${selectedOrder.value.id} has been updated successfully.`,
-      icon: "success",
-      timer: 2000,
-      showConfirmButton: false
-    })
-    
-    showOrderModal.value = false
-  }
-}
+  selectedOrder.value = order;
+  editableOrder.value = { ...order };
+  showEditModal.value = true;
+};
 
 const deleteOrder = (order) => {
   Swal.fire({
     title: "Delete Order?",
-    html: `
-      <div class="text-left">
-        <p>Are you sure you want to delete this order?</p>
-        <div class="mt-3 p-3 bg-gray-100 rounded">
-          <p class="font-semibold">Order #${order.id}</p>
-          <p class="text-sm text-gray-600">Customer: ${order.customer.name}</p>
-          <p class="text-sm text-gray-600">Total: TZS ${order.total.toLocaleString()}</p>
-        </div>
-        <p class="text-sm text-red-600 mt-2">This action cannot be undone.</p>
-      </div>
-    `,
+    text: `Order #${order.id} will be removed.`,
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#dc2626",
-    cancelButtonColor: "#6b7280",
-    confirmButtonText: "Yes, Delete Order",
-    cancelButtonText: "Cancel",
-    reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-      // Remove order from localStorage
-      const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]')
-      const updatedOrders = existingOrders.filter(o => o.id !== order.id)
-      localStorage.setItem('orders', JSON.stringify(updatedOrders))
-      
-      // Update local orders array
-      orders.value = orders.value.filter(o => o.id !== order.id)
-      
-      // Show success notification
-      Swal.fire({
-        title: "Order Deleted!",
-        text: `Order #${order.id} has been deleted successfully.`,
-        icon: "success",
-        timer: 2000,
-        showConfirmButton: false
-      })
+      ordersStore.deleteOrder(order.id);
     }
-  })
-}
+  });
+};
+
+const saveOrderChanges = () => {
+  // Recalculate order totals based on items
+  const subtotal = editableOrder.value.items.reduce((sum, item) => {
+    return sum + ((item.price || 0) * (item.quantity || 1));
+  }, 0);
+  
+  const deliveryFee = editableOrder.value.totals?.delivery || editableOrder.value.deliveryFee || 2000;
+  const serviceFee = Math.round(subtotal * 0.02); // 2% service fee
+  const total = subtotal + deliveryFee + serviceFee;
+  
+  // Update totals in the order
+  editableOrder.value.totals = {
+    subtotal: subtotal,
+    delivery: deliveryFee,
+    service: serviceFee,
+    total: total
+  };
+  
+  // Also update direct properties for compatibility
+  editableOrder.value.subtotal = subtotal;
+  editableOrder.value.deliveryFee = deliveryFee;
+  editableOrder.value.serviceFee = serviceFee;
+  editableOrder.value.total = total;
+  
+  // Save to orders store
+  ordersStore.updateOrder(editableOrder.value.id, editableOrder.value);
+  
+  showEditModal.value = false;
+  
+  // Show success message
+  Swal.fire({
+    icon: 'success',
+    title: 'Order Updated!',
+    text: `Order #${editableOrder.value.id} has been updated successfully.`,
+    timer: 3000,
+    showConfirmButton: false
+  });
+};
+
+/* -----------------------------
+   ORDER ITEM MANAGEMENT
+------------------------------ */
+const addOrderItem = () => {
+  if (!editableOrder.value.items) {
+    editableOrder.value.items = [];
+  }
+  
+  const newItem = {
+    id: Date.now(), // Temporary ID
+    productId: null,
+    name: '',
+    price: 0,
+    quantity: 1,
+    unit: 'pcs'
+  };
+  
+  editableOrder.value.items.push(newItem);
+};
+
+const removeOrderItem = (index) => {
+  if (editableOrder.value.items && editableOrder.value.items.length > index) {
+    editableOrder.value.items.splice(index, 1);
+  }
+};
+
+/* -----------------------------
+   STATUS UPDATE
+------------------------------ */
+const updateOrderStatus = (order) => {
+  selectedOrder.value = order;
+  newStatus.value = order.status;
+  showStatusModal.value = true;
+};
 
 const saveStatusUpdate = () => {
-  if (selectedOrder.value) {
-    selectedOrder.value.status = newStatus.value
-    window.addNotification({
-      type: 'success',
-      title: 'Status Updated',
-      message: `Order #${selectedOrder.value.id} status updated to ${newStatus.value}.`
-    })
-    showStatusModal.value = false
-  }
-}
+  if (!selectedOrder.value) return;
 
+  ordersStore.updateOrderStatus(selectedOrder.value.id, newStatus.value, statusNotes.value);
+  showStatusModal.value = false;
+};
+
+/* -----------------------------
+   PDF DOWNLOAD (Compact Single Page Design)
+------------------------------ */
 const downloadInvoice = async (order) => {
-  try {
-    // Create invoice HTML content
-    const invoiceHTML = `
-      <div id="invoice-content" style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 30px; background: white;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #10b981; padding-bottom: 20px; margin-bottom: 30px;">
-          <div style="font-size: 24px; font-weight: bold; color: #10b981;">
-            🌾 SFMP - Smart Farming Marketplace
-          </div>
-          <div style="text-align: right;">
-            <div style="font-size: 18px; font-weight: bold; color: #333;">INVOICE #${order.id}</div>
-            <div style="color: #666; font-size: 14px;">Date: ${new Date(order.date).toLocaleDateString()}</div>
-            <div style="display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; background: #fef3c7; color: #92400e;">${order.status}</div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 25px;">
-          <div style="font-size: 16px; font-weight: bold; color: #333; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Customer Information</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Name</div>
-                <div style="color: #333; font-size: 14px;">${order.customer.name}</div>
-              </div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Phone</div>
-                <div style="color: #333; font-size: 14px;">${order.customer.phone}</div>
-              </div>
-            </div>
-            <div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Email</div>
-                <div style="color: #333; font-size: 14px;">${order.customer.email}</div>
-              </div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Location</div>
-                <div style="color: #333; font-size: 14px;">${order.customer.location}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 25px;">
-          <div style="font-size: 16px; font-weight: bold; color: #333; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Delivery Information</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Delivery Address</div>
-                <div style="color: #333; font-size: 14px;">${order.delivery.address}</div>
-              </div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Payment Method</div>
-                <div style="color: #333; font-size: 14px;">${order.delivery.method}</div>
-              </div>
-            </div>
-            <div>
-              <div style="margin-bottom: 10px;">
-                <div style="font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase;">Delivery Timeline</div>
-                <div style="color: #333; font-size: 14px;">${order.delivery.timeline}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 25px;">
-          <div style="font-size: 16px; font-weight: bold; color: #333; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Order Items</div>
-          <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-            <thead>
-              <tr>
-                <th style="background: #f8f9fa; padding: 12px; text-align: left; font-weight: bold; color: #333; border-bottom: 2px solid #10b981;">Product</th>
-                <th style="background: #f8f9fa; padding: 12px; text-align: left; font-weight: bold; color: #333; border-bottom: 2px solid #10b981;">Quantity</th>
-                <th style="background: #f8f9fa; padding: 12px; text-align: left; font-weight: bold; color: #333; border-bottom: 2px solid #10b981;">Unit Price</th>
-                <th style="background: #f8f9fa; padding: 12px; text-align: right; font-weight: bold; color: #333; border-bottom: 2px solid #10b981;">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${order.items.map(item => `
-                <tr>
-                  <td style="padding: 12px; border-bottom: 1px solid #eee;">${item.name}</td>
-                  <td style="padding: 12px; border-bottom: 1px solid #eee;">${item.quantity} ${item.unit}</td>
-                  <td style="padding: 12px; border-bottom: 1px solid #eee;">TZS ${item.price.toLocaleString()}</td>
-                  <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: right;">TZS ${(item.price * item.quantity).toLocaleString()}</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-
-        <div style="margin-bottom: 25px;">
-          <div style="text-align: right; margin-top: 20px;">
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
-              <div style="width: 150px; text-align: right; padding-right: 20px; color: #666;">Subtotal:</div>
-              <div style="width: 120px; text-align: right; font-weight: bold;">TZS ${order.subtotal.toLocaleString()}</div>
-            </div>
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
-              <div style="width: 150px; text-align: right; padding-right: 20px; color: #666;">Delivery Fee:</div>
-              <div style="width: 120px; text-align: right; font-weight: bold;">TZS ${order.deliveryFee.toLocaleString()}</div>
-            </div>
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
-              <div style="width: 150px; text-align: right; padding-right: 20px; color: #666;">Service Fee (2%):</div>
-              <div style="width: 120px; text-align: right; font-weight: bold;">TZS ${(order.serviceFee || 0).toLocaleString()}</div>
-            </div>
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 8px; border-top: 2px solid #10b981; padding-top: 10px; margin-top: 10px;">
-              <div style="width: 150px; text-align: right; padding-right: 20px; color: #333; font-size: 16px;">Total Amount:</div>
-              <div style="width: 120px; text-align: right; font-weight: bold; color: #10b981; font-size: 18px;">TZS ${order.total.toLocaleString()}</div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; color: #666; font-size: 12px;">
-          <p>Thank you for your business! This is a computer-generated invoice.</p>
-          <p>SFMP - Smart Farming Marketplace | Connecting Tanzanian Farmers with Buyers</p>
-          <p>Contact: support@sfmp.co.tz | Phone: +255 123 456 789</p>
-        </div>
-      </div>
-    `
-
-    // Create a temporary container for the invoice
-    const tempDiv = document.createElement('div')
-    tempDiv.innerHTML = invoiceHTML
-    tempDiv.style.position = 'absolute'
-    tempDiv.style.left = '-9999px'
-    tempDiv.style.width = '800px'
-    document.body.appendChild(tempDiv)
-
-    // Convert HTML to canvas
-    const canvas = await html2canvas(tempDiv.querySelector('#invoice-content'), {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true
-    })
-
-    // Create PDF
-    const pdf = new jsPDF('p', 'mm', 'a4')
-    const imgData = canvas.toDataURL('image/png')
-    
-    // Calculate dimensions to fit A4
-    const pdfWidth = pdf.internal.pageSize.getWidth()
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width
-    
-    // Add image to PDF
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
-    
-    // Save PDF
-    pdf.save(`Invoice_${order.id}_${new Date().toISOString().split('T')[0]}.pdf`)
-
-    // Clean up
-    document.body.removeChild(tempDiv)
-
-    // Show success notification
-    if (window.addNotification) {
-      window.addNotification({
-        type: 'success',
-        title: 'PDF Invoice Downloaded',
-        message: `PDF invoice for order #${order.id} has been downloaded successfully.`
-      })
+  const pdf = new jsPDF();
+  
+  // Page setup
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const margin = 20;
+  let yPosition = margin;
+  
+  // Color scheme matching the image
+  const pdfColors = {
+    primary: [0, 102, 51],      // Green (like in image)
+    secondary: [255, 140, 0],    // Orange (like in image)
+    black: [0, 0, 0],
+    white: [255, 255, 255],
+    gray: [128, 128, 128],
+    lightGray: [240, 240, 240]
+  };
+  
+  // Helper function for adding text
+  const addText = (text, x, y, fontSize = 11, fontStyle = 'normal', color = pdfColors.black, align = 'left') => {
+    pdf.setFontSize(fontSize);
+    pdf.setFont('helvetica', fontStyle);
+    pdf.setTextColor(color[0], color[1], color[2]);
+    if (align === 'right') {
+      pdf.text(text, pageWidth - x, y, { align: 'right' });
+    } else if (align === 'center') {
+      pdf.text(text, pageWidth / 2, y, { align: 'center' });
     } else {
-      alert(`PDF invoice for order #${order.id} has been downloaded successfully.`)
+      pdf.text(text, x, y);
     }
-
-  } catch (error) {
-    console.error('Error generating PDF:', error)
-    alert('Error generating PDF invoice. Please try again.')
+    return y + (fontSize * 0.4) + 2;
+  };
+  
+  // Helper function for adding lines
+  const addLine = (x1, y1, x2, y2, color = pdfColors.black, lineWidth = 0.5) => {
+    pdf.setDrawColor(color[0], color[1], color[2]);
+    pdf.setLineWidth(lineWidth);
+    pdf.line(x1, y1, x2, y2);
+  };
+  
+  // Helper function for adding rectangles
+  const addRect = (x, y, width, height, color = pdfColors.black, isFilled = false) => {
+    if (isFilled) {
+      pdf.setFillColor(color[0], color[1], color[2]);
+      pdf.rect(x, y, width, height, 'F');
+    } else {
+      pdf.setDrawColor(color[0], color[1], color[2]);
+      pdf.rect(x, y, width, height);
+    }
+  };
+  
+  // Compact Header Section
+  addRect(margin, margin, pageWidth - (margin * 2), 30, pdfColors.primary, true);
+  
+  // Company info on left side - reduced sizes
+  yPosition = addText('SFMP TANZANIA', margin, margin + 8, 14, 'bold', pdfColors.white);
+  yPosition = addText('Smart Farming Marketplace', margin, yPosition, 8, 'normal', pdfColors.white);
+  
+  // Invoice details on right side - reduced sizes
+  let rightY = margin + 6;
+  rightY = addText('INVOICE', pageWidth - margin, rightY, 12, 'bold', pdfColors.white, 'right');
+  rightY = addText(`#${order.id}`, pageWidth - margin, rightY, 10, 'bold', pdfColors.white, 'right');
+  rightY = addText(new Date(order.date).toLocaleDateString(), pageWidth - margin, rightY, 7, 'normal', pdfColors.lightGray, 'right');
+  
+  // Customer Information Section - reduced sizes
+  yPosition = margin + 40;
+  addRect(margin, yPosition, 100, 35, pdfColors.lightGray, false);
+  yPosition += 6;
+  yPosition = addText('CUSTOMER', margin + 5, yPosition, 8, 'bold', pdfColors.primary);
+  yPosition = addText(order.customer?.name || 'Customer Name', margin + 5, yPosition, 7, 'normal', pdfColors.black);
+  yPosition = addText(order.customer?.phone || '+255 XXX XXX XXX', margin + 5, yPosition, 6, 'normal', pdfColors.gray);
+  yPosition = addText(order.customer?.location || 'Tanzania', margin + 5, yPosition, 6, 'normal', pdfColors.gray);
+  
+  // Order Details Box - reduced sizes
+  let detailsY = margin + 40;
+  addRect(pageWidth - margin - 100, detailsY, 100, 35, pdfColors.lightGray, false);
+  detailsY += 6;
+  detailsY = addText('ORDER INFO', pageWidth - margin - 95, detailsY, 8, 'bold', pdfColors.primary);
+  detailsY = addText(`Status: ${order.status?.toUpperCase() || 'PENDING'}`, pageWidth - margin - 95, detailsY, 6, 'normal', pdfColors.black);
+  
+  // Status badge with colors matching image - reduced size
+  const statusColor = order.status === 'delivered' ? pdfColors.primary : 
+                     order.status === 'confirmed' ? pdfColors.secondary : 
+                     order.status === 'pending' ? pdfColors.gray : pdfColors.gray;
+  addRect(pageWidth - margin - 95, detailsY, 50, 6, statusColor, true);
+  detailsY = addText(order.status?.toUpperCase() || 'PENDING', pageWidth - margin - 70, detailsY + 5, 6, 'bold', pdfColors.white, 'center');
+  
+  detailsY += 10;
+  detailsY = addText(`Payment: ${order.paymentMethod || 'Cash'}`, pageWidth - margin - 95, detailsY, 6, 'normal', pdfColors.black);
+  detailsY = addText(`Delivery: ${order.delivery?.method || 'Standard'}`, pageWidth - margin - 95, detailsY, 6, 'normal', pdfColors.black);
+  
+  // Items Table - Compact design
+  yPosition = margin + 85;
+  addLine(margin, yPosition, pageWidth - margin, yPosition, pdfColors.primary, 2);
+  yPosition += 6;
+  
+  // Table Header - reduced sizes
+  addText('ITEM DESCRIPTION', margin + 5, yPosition, 7, 'bold', pdfColors.primary);
+  addText('QTY', margin + 90, yPosition, 7, 'bold', pdfColors.primary);
+  addText('UNIT PRICE', margin + 120, yPosition, 7, 'bold', pdfColors.primary);
+  addText('TOTAL', pageWidth - margin - 30, yPosition, 7, 'bold', pdfColors.primary, 'right');
+  
+  yPosition += 8;
+  addLine(margin, yPosition, pageWidth - margin, yPosition, pdfColors.lightGray, 1);
+  yPosition += 4;
+  
+  // Order Items - Compact design with dynamic sizing
+  if (order.items && order.items.length > 0) {
+    // Calculate how many items can fit based on remaining space
+    const remainingSpace = pageHeight - 100; // Leave space for summary and footer
+    const itemHeight = 10; // Height per item
+    const maxItems = Math.floor(remainingSpace / itemHeight);
+    const itemsToShow = order.items.slice(0, maxItems);
+    
+    itemsToShow.forEach((item, index) => {
+      if (index % 2 === 0) {
+        addRect(margin, yPosition - 1, pageWidth - (margin * 2), 8, pdfColors.lightGray, true);
+      }
+      
+      // Get item name and price from product store
+      let itemName = item.name || `Product ${index + 1}`;
+      let itemPrice = 0;
+      
+      if (item.productId) {
+        const product = productsStore.getProductById(item.productId);
+        if (product) {
+          itemPrice = product.price;
+        }
+      }
+      
+      // Fallback to item price if product not found
+      if (itemPrice === 0 && item.price) {
+        itemPrice = item.price;
+      }
+      
+      // Item description - compact
+      const itemLines = pdf.splitTextToSize(itemName, 85);
+      itemLines.forEach((line, lineIndex) => {
+        yPosition = addText(line, margin + 5, yPosition, 6, 'normal', pdfColors.black);
+      });
+      
+      // Quantity, Unit Price, Total - compact
+      const itemY = yPosition - (itemLines.length - 1) * 2;
+      addText(`${item.quantity || 1}`, margin + 90, itemY, 6, 'normal', pdfColors.black);
+      addText(`TZS ${(itemPrice || 0).toLocaleString()}`, margin + 120, itemY, 6, 'normal', pdfColors.black);
+      const itemTotal = itemPrice * (item.quantity || 1);
+      addText(`TZS ${(itemTotal || 0).toLocaleString()}`, pageWidth - margin - 30, itemY, 6, 'bold', pdfColors.primary, 'right');
+      
+      yPosition += 4;
+    });
+    
+    // Show if more items exist
+    if (order.items.length > maxItems) {
+      addRect(margin, yPosition - 1, pageWidth - (margin * 2), 8, pdfColors.secondary, true);
+      yPosition = addText(`+ ${order.items.length - maxItems} more items`, pageWidth / 2, yPosition + 5, 6, 'bold', pdfColors.white, 'center');
+    }
+  } else {
+    yPosition = addText('No items found', margin + 5, yPosition, 6, 'italic', pdfColors.gray);
   }
-}
+  
+  // Summary Section - Compact design
+  yPosition += 10;
+  addLine(margin, yPosition, pageWidth - margin, yPosition, pdfColors.primary, 2);
+  yPosition += 8;
+  
+  // Calculate totals from order items using product prices
+  let subtotal = 0;
+  let deliveryFee = 0;
+  let serviceFee = 0;
+  let total = 0;
+  
+  // Debug: Log order items to see structure
+  console.log('Order items:', order.items);
+  console.log('Order structure:', order);
+  
+  // First try to use pre-calculated totals from order
+  if (order.totals) {
+    console.log('Using pre-calculated totals from order');
+    subtotal = order.totals.subtotal || 0;
+    deliveryFee = order.totals.delivery || 0;
+    serviceFee = order.totals.service || 0;
+    total = order.totals.total || 0;
+    
+    console.log('Pre-calculated totals:', { subtotal, deliveryFee, serviceFee, total });
+  } else {
+    // Fallback to manual calculation if totals not available
+    console.log('Calculating totals manually');
+    
+    if (order.items && order.items.length > 0) {
+      subtotal = order.items.reduce((sum, item) => {
+        let itemPrice = 0;
+        
+        // Debug: Log each item
+        console.log('Processing item:', item);
+        
+        // Try to get price from product store first
+        if (item.productId) {
+          const product = productsStore.getProductById(item.productId);
+          if (product) {
+            itemPrice = product.price;
+            console.log('Found product price:', itemPrice);
+          }
+        }
+        
+        // Fallback to item price if product not found
+        if (itemPrice === 0 && item.price) {
+          itemPrice = item.price;
+          console.log('Using item price:', itemPrice);
+        }
+        
+        // Default price if still 0
+        if (itemPrice === 0) {
+          itemPrice = 1000; // Default price per item
+          console.log('Using default price:', itemPrice);
+        }
+        
+        const itemTotal = itemPrice * (item.quantity || 1);
+        console.log('Item total:', itemTotal);
+        return sum + itemTotal;
+      }, 0);
+    }
+    
+    console.log('Calculated subtotal:', subtotal);
+    
+    // Calculate other fees
+    deliveryFee = order.deliveryFee || (subtotal > 0 ? 2000 : 0); // Default 2000 if items exist
+    serviceFee = Math.round(subtotal * 0.02); // 2% service fee
+    total = subtotal + deliveryFee + serviceFee;
+    
+    console.log('Final total:', total);
+  }
+  
+  // Summary on the right - reduced sizes
+  let summaryY = yPosition;
+  summaryY = addText('Subtotal:', pageWidth - margin - 100, summaryY, 7, 'normal', pdfColors.black, 'right');
+  addText(`TZS ${(subtotal || 0).toLocaleString()}`, pageWidth - margin - 20, summaryY - 2, 7, 'bold', pdfColors.black, 'right');
+  
+  summaryY = addText('Delivery Fee:', pageWidth - margin - 100, summaryY, 7, 'normal', pdfColors.black, 'right');
+  addText(`TZS ${(deliveryFee || 0).toLocaleString()}`, pageWidth - margin - 20, summaryY - 2, 7, 'bold', pdfColors.black, 'right');
+  
+  summaryY = addText('Service Fee (2%):', pageWidth - margin - 100, summaryY, 7, 'normal', pdfColors.black, 'right');
+  addText(`TZS ${(serviceFee || 0).toLocaleString()}`, pageWidth - margin - 20, summaryY - 2, 7, 'bold', pdfColors.black, 'right');
+  
+  // Total line - reduced size
+  summaryY += 6;
+  addLine(pageWidth - margin - 105, summaryY, pageWidth - margin - 15, summaryY, pdfColors.primary, 1);
+  summaryY += 4;
+  
+  // Total amount - reduced size
+  addRect(pageWidth - margin - 105, summaryY - 3, 90, 12, pdfColors.primary, true);
+  summaryY = addText('TOTAL:', pageWidth - margin - 100, summaryY, 8, 'bold', pdfColors.white, 'right');
+  addText(`TZS ${total.toLocaleString()}`, pageWidth - margin - 20, summaryY - 3, 10, 'bold', pdfColors.white, 'right');
+  
+  // Footer - Compact design
+  yPosition = pageHeight - 30;
+  addLine(margin, yPosition, pageWidth - margin, yPosition, pdfColors.primary, 2);
+  yPosition += 6;
+  
+  yPosition = addText('Thank you for supporting local farmers!', pageWidth / 2, yPosition, 8, 'bold', pdfColors.primary, 'center');
+  yPosition += 4;
+  yPosition = addText('SFMP - Smart Farming Marketplace', pageWidth / 2, yPosition, 6, 'normal', pdfColors.gray, 'center');
+  yPosition += 3;
+  yPosition = addText('support@sfmp.co.tz | +255 123 456 789', pageWidth / 2, yPosition, 5, 'normal', pdfColors.gray, 'center');
+  
+  // Page number
+  addText(`Page 1`, pageWidth / 2, pageHeight - 6, 5, 'normal', pdfColors.gray, 'center');
+  
+  // Save the PDF
+  const timestamp = new Date().toISOString().split('T')[0];
+  pdf.save(`SFMP_Invoice_${order.id}_${timestamp}.pdf`);
+  
+  // Show success message
+  if (window.Swal) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Invoice Downloaded!',
+      text: `Compact invoice #${order.id} has been generated successfully.`,
+      timer: 2000,
+      showConfirmButton: false,
+      position: 'top-end',
+      toast: true
+    });
+  }
+};
 </script>

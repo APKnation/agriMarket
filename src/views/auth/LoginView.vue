@@ -98,7 +98,7 @@
         <!-- Demo Accounts -->
         <div class="mt-6 pt-6 border-t border-gray-200">
           <p class="text-sm text-gray-600 mb-3">Demo Accounts:</p>
-          <div class="space-y-2 text-xs">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
             <div class="bg-gray-50 p-2 rounded">
               <strong>Farmer:</strong> +255712345678 / password
             </div>
@@ -111,6 +111,32 @@
             <div class="bg-gray-50 p-2 rounded">
               <strong>Admin:</strong> admin / password
             </div>
+          </div>
+        </div>
+
+        <!-- Temporary Admin Access -->
+        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div class="text-center">
+            <h3 class="text-lg font-semibold text-yellow-800 mb-2">🔧 Temporary Admin Access</h3>
+            <p class="text-sm text-yellow-700 mb-4">
+              For development purposes only. Admin accounts will be created through the backend system.
+            </p>
+            <div class="bg-white p-3 rounded border border-yellow-300">
+              <p class="text-xs font-mono text-gray-700 mb-2">
+                <strong>Temporary Credentials:</strong><br>
+                Email: admin@sfmp.com<br>
+                Password: password123
+              </p>
+              <button
+                @click="useTempAdmin"
+                class="w-full bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 text-sm font-medium"
+              >
+                Use Admin Account
+              </button>
+            </div>
+            <p class="text-xs text-yellow-600 mt-2">
+              ⚠️ This is for development only and will be removed in production.
+            </p>
           </div>
         </div>
       </div>
@@ -166,6 +192,21 @@ const handleLogin = async () => {
     error.value = languageStore.t('unexpectedError')
   } finally {
     isLoading.value = false
+  }
+}
+
+const useTempAdmin = async () => {
+  // Use temporary admin credentials for development
+  const tempAdminData = {
+    phone: 'admin@sfmp.com',
+    password: 'password123'
+  }
+
+  const result = await authStore.login(tempAdminData)
+  if (result.success) {
+    router.push('/admin')
+  } else {
+    error.value = 'Failed to login with temporary admin credentials.'
   }
 }
 </script>
