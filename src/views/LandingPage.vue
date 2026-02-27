@@ -498,6 +498,9 @@
       <!-- Image Section Component -->
       <ImageSection />
 
+      <!-- Add spacing between ImageSection and Transforming Lives section -->
+      <div class="h-6 sm:h-8 md:h-12 lg:h-16 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50"></div>
+
       <!-- Statistics Section -->
       <section
         class="py-8 md:py-12 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 relative overflow-hidden"
@@ -525,15 +528,15 @@
           <div class="w-full flex-shrink-0 px-4">
             <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/90 via-emerald-700/80 to-teal-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
-              <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700">
+              <div class="relative bg-white/10 backdrop-blur-md border border-emerald-400/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-center group-hover:border-emerald-400/60 transition-all duration-700 min-h-[280px] sm:min-h-[320px]">
                 <div class="text-center relative z-10">
-                  <div class="w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-emerald-200 mb-4">Market Access</h3>
-                  <p class="text-emerald-100 font-normal leading-relaxed max-w-sm mx-auto">
+                  <h3 class="text-lg sm:text-xl font-bold text-emerald-200 mb-4">Market Access</h3>
+                  <p class="text-emerald-100 font-normal leading-relaxed text-sm sm:text-base max-w-sm mx-auto">
                     Farmers connect directly with buyers, eliminating middlemen and ensuring fair prices for their produce
                   </p>
                 </div>
@@ -545,15 +548,15 @@
           <div class="w-full flex-shrink-0 px-4">
             <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/80 to-indigo-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700">
+              <div class="relative bg-white/10 backdrop-blur-md border border-blue-400/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-center group-hover:border-blue-400/60 transition-all duration-700 min-h-[280px] sm:min-h-[320px]">
                 <div class="text-center relative z-10">
-                  <div class="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-blue-200 mb-4">Digital Tools</h3>
-                  <p class="text-blue-100 font-normal leading-relaxed max-w-sm mx-auto">
+                  <h3 class="text-lg sm:text-xl font-bold text-blue-200 mb-4">Digital Tools</h3>
+                  <p class="text-blue-100 font-normal leading-relaxed text-sm sm:text-base max-w-sm mx-auto">
                     Mobile technology and modern farming equipment help increase productivity and crop quality
                   </p>
                 </div>
@@ -565,15 +568,15 @@
           <div class="w-full flex-shrink-0 px-4">
             <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-purple-700/80 to-pink-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 rotate-1 group-hover:rotate-0"></div>
-              <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700">
+              <div class="relative bg-white/10 backdrop-blur-md border border-purple-400/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-center group-hover:border-purple-400/60 transition-all duration-700 min-h-[280px] sm:min-h-[320px]">
                 <div class="text-center relative z-10">
-                  <div class="w-20 h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-purple-200 mb-4">Community Growth</h3>
-                  <p class="text-purple-100 font-normal leading-relaxed max-w-sm mx-auto">
+                  <h3 class="text-lg sm:text-xl font-bold text-purple-200 mb-4">Community Growth</h3>
+                  <p class="text-purple-100 font-normal leading-relaxed text-sm sm:text-base max-w-sm mx-auto">
                     Cooperatives and farming groups work together, sharing resources and knowledge for collective success
                   </p>
                 </div>
@@ -585,16 +588,16 @@
           <div class="w-full flex-shrink-0 px-4">
             <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-orange-600/90 via-amber-600/80 to-yellow-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700">
+              <div class="relative bg-white/10 backdrop-blur-md border border-orange-400/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-center group-hover:border-orange-400/60 transition-all duration-700">
                 <div class="text-center relative z-10">
-                  <div class="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-500/20 to-amber-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-orange-200 mb-4">Sustainable Future</h3>
-                  <p class="text-orange-100 font-normal leading-relaxed max-w-sm mx-auto">
-                    Environmentally friendly practices ensure productive land for future generations
+                  <h3 class="text-lg sm:text-xl font-bold text-orange-200 mb-4">Sustainable Future</h3>
+                  <p class="text-orange-100 font-normal leading-relaxed text-sm sm:text-base max-w-sm mx-auto">
+                    Environmentally friendly farming practices ensure long-term soil health and ecosystem balance
                   </p>
                 </div>
               </div>
@@ -605,15 +608,15 @@
           <div class="w-full flex-shrink-0 px-4">
             <div class="relative group">
               <div class="absolute inset-0 bg-gradient-to-br from-rose-600/90 via-pink-700/80 to-fuchsia-600/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 transform scale-95 group-hover:scale-105 -rotate-1 group-hover:rotate-0"></div>
-              <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-8 flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700">
+              <div class="relative bg-white/10 backdrop-blur-md border border-rose-400/30 rounded-2xl p-6 sm:p-8 flex flex-col justify-center group-hover:border-rose-400/60 transition-all duration-700 min-h-[280px] sm:min-h-[320px]">
                 <div class="text-center relative z-10">
-                  <div class="w-20 h-20 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-rose-500/20 to-pink-600/30 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                   </div>
-                  <h3 class="text-xl font-bold text-rose-200 mb-4">Financial Empowerment</h3>
-                  <p class="text-rose-100 font-normal leading-relaxed max-w-sm mx-auto">
+                  <h3 class="text-lg sm:text-xl font-bold text-rose-200 mb-4">Financial Empowerment</h3>
+                  <p class="text-rose-100 font-normal leading-relaxed text-sm sm:text-base max-w-sm mx-auto">
                     Access to microfinance and digital payments helps farmers invest in their operations and secure their financial future
                   </p>
                 </div>
@@ -622,6 +625,9 @@
           </div>
         </div>
       </div>
+      
+      <!-- Add bottom spacing for mobile -->
+      <div class="h-4 sm:h-6 lg:hidden"></div>
       
       <!-- Mobile Navigation -->
       <div class="flex justify-center mt-8 space-x-4" x-data="{ mobileCardIndex: 0 }">
@@ -752,6 +758,10 @@
     </div>
   </div>
 </section>
+
+<!-- Add spacing between sections -->
+<div class="h-8 md:h-12 lg:h-16 bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600"></div>
+
   <!-- Agriculture Section - Text Over Image -->
 <section class="relative w-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
 
